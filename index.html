@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="1970年代から福生のカニ坂公園で続く入場無料の野外ロックフェス。2026年5月22日（金）〜24日（日）開催。vol.41">
+  <meta property="og:title"       content="福生カニ坂ロックフェスティバル 2026 vol.41">
+  <meta property="og:description" content="前夜祭 5月22日（金）／本祭 5月23日（土）・24日（日） — 入場無料">
+  <meta property="og:image"       content="images/ogp.jpg">
+  <title>福生カニ坂ロックフェスティバル 2026 vol.41</title>
+
+  <!-- Google Fonts — system-font fallbacks if blocked -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════
+       TOKENS
+    ═══════════════════════════════════ */
+    :root {
+      --paper:   #F5F5F0;
+      --paper2:  #EEEEE9;
+      --ink:     #424242;
+      --charcoal:#333333;
+      --forest:  #2E7D32;
+      --forest2: #388E3C;
+      --ease-expo: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ═══════════════════════════════════
+       RESET / BASE
+    ═══════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans',
+                   -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    :lang(ja) { font-feature-settings: 'palt' 1; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--paper); }
+    ::-webkit-scrollbar-thumb { background: var(--forest); }
+
+    /* ═══════════════════════════════════
+       GRAIN OVERLAY  — fixed SVG noise
+    ═══════════════════════════════════ */
+    #grain {
+      position: fixed;
+      inset: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ═══════════════════════════════════
+       SCROLL REVEAL
+    ═══════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition:
+        opacity  0.9s var(--ease-expo),
+        transform 0.9s var(--ease-expo);
+    }
+    .reveal.visible       { opacity: 1; transform: none; }
+    .reveal.d1.visible    { transition-delay: 0.12s; }
+    .reveal.d2.visible    { transition-delay: 0.24s; }
+    .reveal.d3.visible    { transition-delay: 0.36s; }
+
+    /* ═══════════════════════════════════
+       LAYOUT HELPERS
+    ═══════════════════════════════════ */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .eyebrow {
+      display: block;
+      font-size: 0.78rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--forest);
+      margin-bottom: 1.2rem;
+    }
+    .section-heading {
+      font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+      font-weight: 300;
+      color: var(--charcoal);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    /* ═══════════════════════════════════
+       SMART HEADER
+    ═══════════════════════════════════ */
+    .hdr {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      /* display:block でhdr-innerとhdr-mobileを縦積みにする */
+      display: block;
+      background: rgba(0,0,0,0.28);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      transition:
+        transform        0.42s var(--ease-expo),
+        background-color 0.45s ease,
+        backdrop-filter  0.45s ease,
+        border-color     0.45s ease;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .hdr.scrolled {
+      background: rgba(245,245,240,0.94);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom-color: rgba(66,66,66,0.08);
+    }
+    .hdr.hidden { transform: translateY(-110px); }
+
+    .hdr-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      width: 100%;
+      height: 64px;          /* バーの高さはhdr-innerで管理 */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .hdr-brand {
+      font-size: 0.75rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: white;
+      text-shadow: 0 1px 10px rgba(0,0,0,0.65);
+      transition: color 0.45s ease, text-shadow 0.45s ease;
+    }
+    .hdr.scrolled .hdr-brand {
+      color: var(--charcoal);
+      text-shadow: none;
+    }
+
+    .hdr-nav { display: none; gap: 2.2rem; }
+    .hdr-nav a {
+      font-size: 0.75rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+      text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+      position: relative;
+    }
+    .hdr-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      height: 1px;
+      width: 0;
+      background: var(--forest);
+      transition: width 0.32s var(--ease-expo);
+    }
+    .hdr-nav a:hover { color: var(--forest); }
+    .hdr-nav a:hover::after { width: 100%; }
+    .hdr.scrolled .hdr-nav a { color: rgba(66,66,66,0.65); text-shadow: none; }
+    .hdr.scrolled .hdr-nav a:hover { color: var(--forest); }
+
+    .hdr-ham {
+      background: none; border: none; cursor: pointer;
+      display: flex; flex-direction: column; gap: 6px; padding: 4px;
+      color: white;
+    }
+    .hdr.scrolled .hdr-ham { color: var(--ink); }
+    .hdr-ham span {
+      display: block; width: 22px; height: 1.5px;
+      background: currentColor;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      transform-origin: center;
+    }
+    .hdr-ham.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .hdr-ham.open span:nth-child(2) { opacity: 0; }
+    .hdr-ham.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    .hdr-mobile {
+      max-height: 0; overflow: hidden;
+      background: rgba(20,20,20,0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      transition: max-height 0.4s var(--ease-expo);
+    }
+    .hdr.scrolled .hdr-mobile {
+      background: rgba(245,245,240,0.98);
+      border-top-color: rgba(66,66,66,0.08);
+    }
+    .hdr-mobile.open { max-height: 180px; }
+    .hdr-mobile a {
+      display: block; padding: 1rem 1.5rem;
+      font-size: 0.82rem; letter-spacing: 0.24em; text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      transition: color 0.2s;
+    }
+    .hdr.scrolled .hdr-mobile a { color: rgba(66,66,66,0.72); border-bottom-color: rgba(66,66,66,0.07); }
+    .hdr-mobile a:hover { color: var(--forest); }
+
+    @media (min-width: 768px) {
+      .hdr-nav  { display: flex; }
+      .hdr-ham  { display: none !important; }
+      .hdr-mobile { display: none !important; }
+    }
+
+    /* ═══════════════════════════════════
+       HERO
+    ═══════════════════════════════════ */
+    .hero {
+      position: relative;
+      height: 100svh;
+      min-height: 600px;
+      overflow: hidden;
+      background: #111;
+      cursor: crosshair;
+    }
+
+    /* Background — extra height/top for parallax headroom */
+    .hero-bg {
+      position: absolute;
+      left: 0; right: 0;
+      top: -30%;
+      height: 160%;
+      will-change: transform;
+    }
+    /* Mixed slider — photo & video slides */
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      opacity: 0;
+      transition: opacity 1.6s ease;
+    }
+    .hero-slide.active { opacity: 1; }
+    .hero-slide img,
+    .hero-slide video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .hero-slide img {
+      filter: brightness(0.88);
+      /* 少し大きくしてパン余白を確保 */
+      transform: scale(1.07) translateX(0);
+      will-change: transform;
+    }
+
+    /* 左→右パン */
+    @keyframes heroPanRight {
+      from { transform: scale(1.07) translateX(-3.5%); }
+      to   { transform: scale(1.07) translateX( 3.5%); }
+    }
+    /* 右→左パン */
+    @keyframes heroPanLeft {
+      from { transform: scale(1.07) translateX( 3.5%); }
+      to   { transform: scale(1.07) translateX(-3.5%); }
+    }
+    .hero-slide img.pan-right {
+      animation: heroPanRight 6s ease-in-out forwards;
+    }
+    .hero-slide img.pan-left {
+      animation: heroPanLeft 6s ease-in-out forwards;
+    }
+
+    /* Slider dots */
+    .hero-dots {
+      position: absolute;
+      bottom: 4.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      display: flex;
+      gap: 7px;
+      animation: fadeUp 1.0s 1.6s var(--ease-expo) both;
+    }
+    .hero-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.28);
+      transition: background 0.4s ease, transform 0.4s ease;
+      cursor: pointer;
+    }
+    .hero-dot.active {
+      background: rgba(255,255,255,0.88);
+      transform: scale(1.3);
+    }
+    /* Gradient vignette */
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.18) 0%,
+        rgba(0,0,0,0.00) 40%,
+        rgba(0,0,0,0.32) 100%
+      );
+    }
+
+    /* Centre content */
+    .hero-content {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      z-index: 4;
+      text-align: center;
+      padding: 0 1.5rem;
+      will-change: transform, opacity;
+    }
+
+    /* Keyframe animations — load-in */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(44px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-logo {
+      width: min(260px, 62vw);
+      filter: none;
+      animation: fadeUp 1.4s var(--ease-expo) both;
+      margin-bottom: 2.4rem;
+    }
+    .hero-name {
+      font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+      font-size: clamp(1.5rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: white;
+      text-shadow: 0 2px 18px rgba(0,0,0,0.72);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+      animation: fadeUp 1.2s 0.32s var(--ease-expo) both;
+    }
+    .hero-vol {
+      font-size: clamp(1rem, 2.4vw, 1.6rem);
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      color: rgba(255,255,255,0.82);
+      text-shadow: 0 1px 12px rgba(0,0,0,0.65);
+      animation: fadeUp 1.1s 0.5s var(--ease-expo) both;
+      margin-bottom: 0;
+    }
+    .hero-chips {
+      display: flex; align-items: center; gap: 2.2rem;
+      margin-top: 3.2rem;
+      animation: fadeUp 1.0s 0.72s var(--ease-expo) both;
+    }
+    .hero-chip {
+      text-align: center;
+    }
+    .hero-chip-label {
+      display: block;
+      font-size: 0.92rem;
+      letter-spacing: 0.24em;
+      font-weight: 500;
+      color: rgba(255,255,255,0.55);
+      text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+      margin-bottom: 0.5rem;
+    }
+    .hero-chip-label.green { color: rgba(102,187,106,0.95); }
+    .hero-chip-val {
+      font-size: 1.2rem;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.82);
+      text-shadow: 0 2px 12px rgba(0,0,0,0.65);
+      font-weight: 400;
+    }
+    .hero-chip-val.bold {
+      color: white;
+      font-weight: 600;
+      font-size: 1.3rem;
+    }
+    .hero-divider { width: 1px; height: 2.8rem; background: rgba(255,255,255,0.2); }
+
+
+    /* ═══════════════════════════════════
+       EXTRA LIVE / 支援ライブ
+    ═══════════════════════════════════ */
+    .extra-live {
+      background: var(--paper2);
+      padding: 5.5rem 0 6rem;
+      overflow: hidden;
+    }
+    .extra-live-header {
+      margin-bottom: 1rem;
+    }
+
+    .extra-live-desc {
+      font-size: 0.9rem;
+      line-height: 1.9;
+      color: rgba(66,66,66,0.62);
+      max-width: 560px;
+      margin-bottom: 3.2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 4-up grid */
+    .flyer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.4rem;
+    }
+    @media (min-width: 768px) {
+      .flyer-grid { grid-template-columns: repeat(4, 1fr); gap: 1.6rem; }
+    }
+
+    /* Flyer card */
+    .flyer-card {
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .flyer-card:focus-visible {
+      outline: 2px solid var(--forest);
+      outline-offset: 2px;
+    }
+
+    /* Wireframe placeholder */
+    .flyer-img-wrap {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: #e4e4de;
+      border: 1px dashed rgba(66,66,66,0.22);
+    }
+    .flyer-img-wrap img {
+      width: 100%; height: 100%;
+      display: block;
+      object-fit: contain;
+      background: #111110;
+      transition: transform 0.7s var(--ease-expo);
+    }
+    .flyer-img-wrap svg {
+      width: 100%; height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.7s var(--ease-expo);
+    }
+    .flyer-card:hover .flyer-img-wrap img,
+    .flyer-card:hover .flyer-img-wrap svg {
+      transform: scale(1.04);
+    }
+
+    /* Zoom icon on hover */
+    .flyer-img-wrap::after {
+      content: '⊕';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0.6);
+      font-size: 2rem;
+      color: white;
+      background: rgba(0,0,0,0.45);
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+      line-height: 48px;
+      text-align: center;
+    }
+    .flyer-card:hover .flyer-img-wrap::after {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    /* Coming Soonカードはズームアイコン・カーソル・ホバー不要 */
+    .flyer-card.coming-soon { cursor: default; }
+    .flyer-card.coming-soon .flyer-img-wrap::after { display: none; }
+    .flyer-card.coming-soon .flyer-img-wrap img { transform: none !important; }
+
+    /* Coming Soon プレースホルダー */
+    .flyer-coming-soon {
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #d8d8d2;
+      gap: 0.6rem;
+    }
+    .flyer-coming-soon-line {
+      width: 28px; height: 1px;
+      background: rgba(0,0,0,0.2);
+    }
+    .flyer-coming-soon-text {
+      font-size: 0.6rem;
+      letter-spacing: 0.52em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.35);
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Caption */
+    .flyer-caption {
+      padding: 0.9rem 0 0.2rem;
+    }
+    .flyer-date {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      display: block;
+      margin-bottom: 0.15rem;
+      letter-spacing: 0.02em;
+    }
+    .flyer-venue {
+      font-size: 0.76rem;
+      color: rgba(66,66,66,0.55);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── LIGHTBOX ── */
+    .lb-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      background: rgba(10,10,10,0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.32s ease;
+    }
+    .lb-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .lb-stage {
+      position: relative;
+      max-width: min(90vw, 440px);
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .lb-img-wrap {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: #1a1a1a;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .lb-img-wrap img,
+    .lb-img-wrap svg {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .lb-info {
+      width: 100%;
+      padding: 0.9rem 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .lb-title {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.82);
+      letter-spacing: 0.04em;
+    }
+    .lb-counter {
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      color: rgba(255,255,255,0.34);
+      text-transform: uppercase;
+    }
+
+    /* Close / nav buttons */
+    .lb-close {
+      position: absolute;
+      top: -2.6rem;
+      right: 0;
+      background: none; border: none; cursor: pointer;
+      color: rgba(255,255,255,0.55);
+      font-size: 1.4rem;
+      line-height: 1;
+      padding: 0.3rem 0.5rem;
+      transition: color 0.2s;
+    }
+    .lb-close:hover { color: white; }
+
+    .lb-prev, .lb-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: white;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .lb-prev:hover, .lb-next:hover { background: rgba(255,255,255,0.2); }
+    .lb-prev { right: calc(100% + 0.8rem); }
+    .lb-next { left:  calc(100% + 0.8rem); }
+
+    @media (max-width: 767px) {
+      .extra-live { padding: 3.5rem 0 4rem; }
+      .flyer-grid { gap: 1rem; }
+      .lb-prev, .lb-next { display: none; }
+      .lb-stage { max-width: 88vw; }
+    }
+
+    /* ═══════════════════════════════════
+       MESSAGE / SLOGAN
+    ═══════════════════════════════════ */
+    .message {
+      display: grid;
+      grid-template-columns: 1fr;
+      min-height: 82vh;
+    }
+    @media (min-width: 768px) {
+      .message { grid-template-columns: 1fr 1fr; }
+    }
+
+    .msg-photo-col {
+      position: relative;
+      overflow: hidden;
+      min-height: 56vw;
+      order: 2;
+    }
+    @media (min-width: 768px) {
+      .msg-photo-col { min-height: 0; order: 1; }
+    }
+    .msg-photo-wrap {
+      position: absolute;
+      left: 0; right: 0;
+      top: -12%;
+      height: 124%;
+      will-change: transform;
+    }
+    .msg-photo-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+    .msg-photo-overlay {
+      position: absolute; inset: 0;
+      background: rgba(51,51,51,0.14);
+    }
+
+    .msg-text-col {
+      background: var(--paper);
+      display: flex;
+      align-items: center;
+      order: 1;
+    }
+    @media (min-width: 768px) { .msg-text-col { order: 2; } }
+    .msg-text-inner {
+      padding: 4.5rem 2rem 4.5rem;
+      width: 100%;
+      max-width: 520px;
+    }
+    @media (min-width: 768px) {
+      .msg-text-inner {
+        padding: 5.5rem 3.5rem 5.5rem clamp(2rem, 5vw, 5rem);
+      }
+    }
+
+    .msg-poem {
+      font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+      font-size: clamp(1.1rem, 2.4vw, 1.45rem);
+      line-height: 2.8;
+      color: var(--charcoal);
+      border-left: 1px solid var(--forest);
+      padding-left: 1.4rem;
+      margin: 0 0 1.2rem;
+    }
+    .msg-attr {
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      color: rgba(66,66,66,0.72);
+      font-family: 'Noto Serif JP', serif;
+      margin-bottom: 1.8rem;
+    }
+    .msg-body {
+      font-size: 0.96rem;
+      line-height: 2.28;
+      color: rgba(66,66,66,0.68);
+    }
+
+    /* ═══════════════════════════════════
+       CONCEPT / ABOUT
+    ═══════════════════════════════════ */
+    .concept {
+      background: var(--paper);
+      padding: 5.5rem 0 6rem;
+    }
+    .concept-header {
+      margin-bottom: 3.8rem;
+      max-width: 640px;
+    }
+    .concept-intro {
+      font-size: 0.96rem;
+      line-height: 2.3;
+      color: rgba(66,66,66,0.65);
+      margin-top: 1.4rem;
+    }
+
+    /* 3-col grid */
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 640px) {
+      .concept-grid { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+    }
+
+    /* Card */
+    .concept-card {
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .concept-card-img-wrap {
+      position: relative;
+      overflow: hidden;
+      height: 260px;
+    }
+    .concept-card-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.75s var(--ease-expo), opacity 0.5s ease;
+    }
+    .concept-card:hover .concept-card-img {
+      transform: scale(1.07);
+      opacity: 0.9;
+    }
+    .concept-card-tint {
+      position: absolute; inset: 0;
+      background: var(--forest);
+      opacity: 0;
+      transition: opacity 0.42s ease;
+    }
+    .concept-card:hover .concept-card-tint { opacity: 0.11; }
+
+    .concept-card-body { padding: 1.4rem 0.2rem 1.6rem; }
+    .concept-kw {
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--charcoal);
+      display: block;
+      margin-bottom: 0.55rem;
+      line-height: 1;
+      transition:
+        color     0.32s var(--ease-expo),
+        transform 0.32s var(--ease-expo);
+    }
+    .concept-card:hover .concept-kw {
+      color: var(--forest);
+      transform: translateX(5px);
+    }
+    .concept-card-text {
+      font-size: 0.93rem;
+      line-height: 1.95;
+      color: rgba(66,66,66,0.65);
+    }
+
+    /* Expanding green rule */
+    .concept-card-rule {
+      height: 1px;
+      background: var(--forest);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.38s var(--ease-expo);
+    }
+    .concept-card:hover .concept-card-rule { transform: scaleX(1); }
+
+    /* ═══════════════════════════════════
+       ACCESS
+    ═══════════════════════════════════ */
+    .access {
+      background: var(--paper2);
+      padding: 5.5rem 0 6rem;
+    }
+    .access iframe {
+      width: 100%; height: 320px;
+      border: 0; display: block;
+      margin-bottom: 2.8rem;
+    }
+    @media (min-width: 768px) { .access iframe { height: 380px; } }
+
+    .access-blocks {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background: rgba(66,66,66,0.12);
+      border: 1px solid rgba(66,66,66,0.12);
+      overflow: hidden;
+    }
+    @media (min-width: 640px) {
+      .access-blocks { grid-template-columns: repeat(2, 1fr); }
+    }
+    .access-block {
+      background: var(--paper);
+      padding: 2rem 1.8rem;
+    }
+    .access-block-title {
+      display: block;
+      font-size: 0.74rem;
+      letter-spacing: 0.44em;
+      text-transform: uppercase;
+      color: var(--forest);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .access-block p, .access-block li {
+      font-size: 0.95rem;
+      line-height: 2;
+      color: rgba(66,66,66,0.68);
+    }
+    .access-block ul { padding-left: 1rem; list-style: disc; }
+    .access-block li { margin-bottom: 0.1rem; }
+
+    /* ═══════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════ */
+    .site-footer {
+      background: var(--charcoal);
+      padding: 1.8rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    @media (min-width: 640px) {
+      .site-footer { flex-direction: row; justify-content: space-between; }
+    }
+    .footer-copy {
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.26);
+    }
+    .footer-fb {
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.26);
+      transition: color 0.25s;
+    }
+    .footer-fb:hover { color: var(--forest2); }
+
+    /* ═══════════════════════════════════
+       FB FLOAT
+    ═══════════════════════════════════ */
+    .fb-float {
+      position: fixed; right: 1rem; bottom: 5rem; z-index: 150;
+    }
+    .fb-float a {
+      display: flex; align-items: center; justify-content: center;
+      width: 42px; height: 42px;
+      background: #1877f2; color: white;
+      border-radius: 50%; font-size: 1.1rem; font-weight: 900;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.28);
+      transition: transform 0.2s ease;
+    }
+    .fb-float a:hover { transform: scale(1.12); }
+
+    /* ═══════════════════════════════════
+       MOBILE RESPONSIVE
+    ═══════════════════════════════════ */
+
+    /* ── スマホ全般 (〜767px) ── */
+    @media (max-width: 767px) {
+
+      /* コンテナ余白を狭く */
+      .container { padding: 0 1rem; }
+
+      /* ヘッダー — hdr-innerで高さを管理 */
+      .hdr-inner { height: 52px; }
+
+      /* HERO — 縦を短く */
+      .hero {
+        height: 54svh;
+        min-height: 340px;
+      }
+
+      /* ロゴ */
+      .hero-logo { width: min(160px, 46vw); margin-bottom: 1rem; }
+
+      /* イベントタイトル */
+      .hero-name {
+        font-size: clamp(1.2rem, 6vw, 1.8rem);
+        letter-spacing: 0.06em;
+      }
+      .hero-vol {
+        font-size: clamp(0.88rem, 4vw, 1.1rem);
+        letter-spacing: 0.14em;
+      }
+
+      /* チップ */
+      .hero-chips {
+        gap: 1rem;
+        margin-top: 1.4rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .hero-chip-label { font-size: 0.78rem; }
+      .hero-chip-val   { font-size: 1rem; }
+      .hero-chip-val.bold { font-size: 1.05rem; }
+      .hero-divider    { height: 2rem; }
+
+      /* スライダードット位置 */
+      .hero-dots { bottom: 1.4rem; }
+
+      /* メッセージセクション */
+      .msg-photo-col { min-height: 72vw; }
+      .msg-text-inner { padding: 3rem 1.2rem 3rem; }
+      .msg-poem { font-size: clamp(1rem, 4.5vw, 1.2rem); line-height: 2.5; }
+      .msg-attr { font-size: 0.9rem; }
+      .msg-body { font-size: 0.9rem; line-height: 2; }
+
+      /* コンセプトセクション */
+      .concept { padding: 4rem 0 4.5rem; }
+      .concept-header { margin-bottom: 2.4rem; }
+      .concept-card-img-wrap { height: 200px; }
+      .concept-card-body { padding: 1rem 0.2rem 1.2rem; }
+
+      /* アクセス */
+      .access { padding: 4rem 0 4.5rem; }
+      .access-blocks { grid-template-columns: 1fr 1fr; gap: 0; }
+      .access-block { padding: 1.4rem 1.2rem; }
+
+      /* フッター */
+      .site-footer { padding: 1.4rem 1rem; gap: 0.6rem; }
+      .footer-copy, .footer-fb { font-size: 0.65rem; letter-spacing: 0.2em; }
+
+      /* FB float */
+      .fb-float { right: 0.8rem; bottom: 4rem; }
+    }
+
+    /* ── 極小スマホ (〜400px) ── */
+    @media (max-width: 400px) {
+      .hero-name { font-size: 5.2vw; }
+      .hero-vol  { font-size: 3.8vw; }
+      .hero-chip-label { font-size: 0.7rem; }
+      .hero-chip-val   { font-size: 0.88rem; }
+      .hero-chip-val.bold { font-size: 0.92rem; }
+      .hero-divider    { display: none; }  /* 極小は区切り線を非表示 */
+      .hero-chips { gap: 1.4rem; }
+      .access-blocks { grid-template-columns: 1fr; }
+    }
+
+    /* ── タブレット (768px〜1023px) ── */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .msg-text-inner { padding: 3.5rem 2rem; }
+      .concept-grid { gap: 1.8rem; }
+      .concept-card-img-wrap { height: 220px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══ GRAIN OVERLAY ═══ -->
+  <svg id="grain" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <filter id="gf">
+      <feTurbulence type="fractalNoise" baseFrequency="0.64" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#gf)" opacity="0.034"/>
+  </svg>
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="hdr" id="hdr">
+    <div class="hdr-inner">
+      <nav class="hdr-nav">
+        <a href="#message">Message</a>
+        <a href="#concept">Concept</a>
+        <a href="#access">Access</a>
+      </nav>
+      <button class="hdr-ham" id="hdrHam" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="hdr-mobile" id="hdrMobile">
+      <a href="#message">Message</a>
+      <a href="#concept">Concept</a>
+      <a href="#access">Access</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ═══ HERO ═══ -->
+    <section id="top" class="hero">
+
+      <!-- Parallax background (mixed photo + video slider) -->
+      <div class="hero-bg" id="heroBg">
+
+        <!-- 0: stage.mp4 -->
+        <div class="hero-slide active" data-type="video">
+          <video src="images/stage.mp4" muted playsinline preload="auto" id="hslide-v0"></video>
+        </div>
+
+        <!-- 1: hero1.jpg -->
+        <div class="hero-slide" data-type="image">
+          <img src="images/hero1.jpg" alt="" loading="lazy">
+        </div>
+
+        <!-- 2: cocoon.mp4 -->
+        <div class="hero-slide" data-type="video">
+          <video src="images/cocoon.mp4" muted playsinline preload="auto" id="hslide-v2"></video>
+        </div>
+
+        <!-- 3: hero3.jpg -->
+        <div class="hero-slide" data-type="image">
+          <img src="images/hero3.jpg" alt="" loading="lazy">
+        </div>
+
+      </div>
+      <div class="hero-overlay"></div>
+
+      <!-- Slider dots -->
+      <div class="hero-dots" id="heroDots">
+        <div class="hero-dot active" data-idx="0"></div>
+        <div class="hero-dot"        data-idx="1"></div>
+        <div class="hero-dot"        data-idx="2"></div>
+        <div class="hero-dot"        data-idx="3"></div>
+      </div>
+
+      <!-- Centre content -->
+      <div class="hero-content" id="heroContent">
+        <img src="images/logo.png" alt="カニ坂ロックフェスティバル 2026" class="hero-logo">
+        <p class="hero-name">福生カニ坂ロックフェスティバル</p>
+        <p class="hero-vol">2026 vol.41</p>
+        <div class="hero-chips">
+          <div class="hero-chip">
+            <span class="hero-chip-label">前夜祭</span>
+            <span class="hero-chip-val">05.22 FRI</span>
+          </div>
+          <div class="hero-divider"></div>
+          <div class="hero-chip">
+            <span class="hero-chip-label green">本祭</span>
+            <span class="hero-chip-val bold">05.23–24</span>
+          </div>
+          <div class="hero-divider"></div>
+          <div class="hero-chip">
+            <span class="hero-chip-label">入場</span>
+            <span class="hero-chip-val">FREE</span>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /hero -->
+
+
+    <!-- ═══ EXTRA LIVE / 支援ライブ ═══ -->
+    <section id="extra-live" class="extra-live">
+
+      <div class="container">
+
+        <div class="extra-live-header">
+          <span class="eyebrow reveal">Extra Live</span>
+          <h2 class="section-heading reveal d1">支援ライブ</h2>
+        </div>
+        <p class="extra-live-desc reveal d2">
+          入場無料で開催するカニ坂ロックフェスティバルを支援するための箱イベントです。<br>
+          ライブハウスで楽しみながら、フェスを一緒に盛り上げよう。
+        </p>
+
+        <div class="flyer-grid">
+
+          <!-- 1: Coming Soon -->
+          <div class="flyer-card coming-soon reveal">
+            <div class="flyer-img-wrap">
+              <div class="flyer-coming-soon" aria-hidden="true">
+                <div class="flyer-coming-soon-line"></div>
+                <span class="flyer-coming-soon-text">Coming Soon</span>
+                <div class="flyer-coming-soon-line"></div>
+              </div>
+            </div>
+            <div class="flyer-caption">
+              <span class="flyer-date">3/29（日）</span>
+              <span class="flyer-venue">福生 Chicken Shack</span>
+            </div>
+          </div>
+
+          <!-- 2: UZU フライヤー実画像 -->
+          <div class="flyer-card reveal d1" tabindex="0" data-lb="1"
+               aria-label="フライヤーを拡大表示: 4/11 福生UZU">
+            <div class="flyer-img-wrap">
+              <img src="images/uzu2026.jpg" alt="4/11（土）福生UZU 支援ライブフライヤー" loading="lazy">
+            </div>
+            <div class="flyer-caption">
+              <span class="flyer-date">4/11（土）</span>
+              <span class="flyer-venue">福生 UZU</span>
+            </div>
+          </div>
+
+          <!-- 3: Coming Soon -->
+          <div class="flyer-card coming-soon reveal d2">
+            <div class="flyer-img-wrap">
+              <div class="flyer-coming-soon" aria-hidden="true">
+                <div class="flyer-coming-soon-line"></div>
+                <span class="flyer-coming-soon-text">Coming Soon</span>
+                <div class="flyer-coming-soon-line"></div>
+              </div>
+            </div>
+            <div class="flyer-caption">
+              <span class="flyer-date">4/26（日）</span>
+              <span class="flyer-venue">福生 DISCO EDDIE'S</span>
+            </div>
+          </div>
+
+          <!-- 4: Coming Soon -->
+          <div class="flyer-card coming-soon reveal d3">
+            <div class="flyer-img-wrap">
+              <div class="flyer-coming-soon" aria-hidden="true">
+                <div class="flyer-coming-soon-line"></div>
+                <span class="flyer-coming-soon-text">Coming Soon</span>
+                <div class="flyer-coming-soon-line"></div>
+              </div>
+            </div>
+            <div class="flyer-caption">
+              <span class="flyer-date">5/10（日）</span>
+              <span class="flyer-venue">所沢 THE ROCK</span>
+            </div>
+          </div>
+
+        </div><!-- /flyer-grid -->
+      </div><!-- /container -->
+    </section><!-- /extra-live -->
+
+    <!-- ── LIGHTBOX OVERLAY ── -->
+    <div class="lb-overlay" id="lbOverlay" role="dialog" aria-modal="true" aria-label="フライヤー拡大表示">
+      <div class="lb-stage">
+        <button class="lb-close" id="lbClose" aria-label="閉じる">✕</button>
+        <button class="lb-prev"  id="lbPrev"  aria-label="前へ">&#8592;</button>
+        <button class="lb-next"  id="lbNext"  aria-label="次へ">&#8594;</button>
+        <div class="lb-img-wrap" id="lbImgWrap">
+          <!-- JS で挿入 -->
+        </div>
+        <div class="lb-info">
+          <span class="lb-title"  id="lbTitle"></span>
+          <span class="lb-counter" id="lbCounter"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ MESSAGE ═══ -->
+    <section id="message" class="message">
+
+      <!-- Photo (left on desktop) -->
+      <div class="msg-photo-col">
+        <div class="msg-photo-wrap" id="msgPhotoWrap">
+          <img src="images/slogan.jpg" alt="実行委員長 ニークラヤング" loading="lazy">
+          <div class="msg-photo-overlay"></div>
+        </div>
+      </div>
+
+      <!-- Text (right on desktop) -->
+      <div class="msg-text-col">
+        <div class="msg-text-inner">
+          <span class="eyebrow reveal">Message</span>
+          <h2 class="section-heading reveal d1" style="margin-bottom:1.6rem">実行委員長より</h2>
+          <blockquote class="msg-poem reveal d2">
+            晩夏から<br>
+            初夏に季移れし<br>
+            祭りなれど<br>
+            想い変わらぬ<br>
+            熱き心魂
+          </blockquote>
+          <p class="msg-attr reveal d2">— 実行委員長 ニークラヤング</p>
+          <p class="msg-body reveal d3">
+            これまでは8月の真夏に開催されるのが恒例でしたが、近年の記録的な酷暑やゲリラ豪雨といった気候の変化に対応し、2026年から5月開催という大きな決断をしました。50周年に向けてカニ坂ロックフェスは新しい時代へと足を踏み出します。
+          </p>
+        </div>
+      </div>
+
+    </section><!-- /message -->
+
+
+    <!-- ═══ CONCEPT ═══ -->
+    <section id="concept" class="concept">
+      <div class="container">
+
+        <div class="concept-header">
+          <span class="eyebrow reveal">Concept</span>
+          <h2 class="section-heading reveal d1" style="font-size:clamp(1.4rem,3.2vw,2.2rem)">カニ坂ロックフェスティバルとは</h2>
+          <p class="concept-intro reveal d2">
+            1970年代から福生のカニ坂公園で続く、自由とDIY精神を掲げた入場無料の野外フェス。地元のローカルバンドから多彩な演者が集い、多摩川沿いの開放的な空間で共演します。個性豊かな飲食店や雑貨の出店も並び、地域と音楽が一体となる手作り感溢れる伝説的なイベントです。
+          </p>
+        </div>
+
+        <div class="concept-grid">
+
+          <!-- FREE -->
+          <div class="concept-card reveal">
+            <div class="concept-card-img-wrap">
+              <img src="images/concept-free.jpg" alt="" loading="lazy" class="concept-card-img">
+              <div class="concept-card-tint"></div>
+            </div>
+            <div class="concept-card-body">
+              <span class="concept-kw">FREE</span>
+              <p class="concept-card-text">入場無料。多摩川の風に吹かれ、誰もが「自由」に音を楽しめる場所。この圧倒的な解放感こそがカニ坂の誇り。</p>
+            </div>
+            <div class="concept-card-rule"></div>
+          </div>
+
+          <!-- DIY -->
+          <div class="concept-card reveal d1">
+            <div class="concept-card-img-wrap">
+              <img src="images/concept-diy.jpg" alt="" loading="lazy" class="concept-card-img">
+              <div class="concept-card-tint"></div>
+            </div>
+            <div class="concept-card-body">
+              <span class="concept-kw">DIY</span>
+              <p class="concept-card-text">竹取りから設営、運営までボランティアが担う手作りのフェス。自分たちの居場所は、自分たちの手で創り出す。</p>
+            </div>
+            <div class="concept-card-rule"></div>
+          </div>
+
+          <!-- LOCAL -->
+          <div class="concept-card reveal d2">
+            <div class="concept-card-img-wrap">
+              <img src="images/concept-local.jpg" alt="" loading="lazy" class="concept-card-img">
+              <div class="concept-card-tint"></div>
+            </div>
+            <div class="concept-card-body">
+              <span class="concept-kw">LOCAL</span>
+              <p class="concept-card-text">福生に根ざしたローカルバンドや個性豊かな出店が集結。地域コミュニティの熱こそがフェスティバルの原動力。</p>
+            </div>
+            <div class="concept-card-rule"></div>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- /concept -->
+
+
+    <!-- ═══ ACCESS ═══ -->
+    <section id="access" class="access">
+      <div class="container">
+        <span class="eyebrow reveal">Access</span>
+        <h2 class="section-heading reveal d1" style="margin-bottom:2.4rem">アクセス</h2>
+
+        <div class="reveal d1">
+          <iframe
+            src="https://maps.google.com/maps?q=%E7%A6%8F%E7%94%9F%E3%81%8B%E3%81%AB%E5%9D%82%E5%85%AC%E5%9C%92+%E6%9D%B1%E4%BA%AC%E9%83%BD%E7%A6%8F%E7%94%9F%E5%B8%82%E7%A6%8F%E7%94%9F1185-15&t=&z=16&ie=UTF8&iwloc=&output=embed"
+            allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="福生かに坂公園 地図">
+          </iframe>
+        </div>
+
+        <div class="access-blocks">
+          <div class="access-block reveal">
+            <span class="access-block-title">会場</span>
+            <p>福生かに坂公園<br>〒197-0011<br>東京都福生市福生１１８５－１５</p>
+          </div>
+          <div class="access-block reveal d1">
+            <span class="access-block-title">電車</span>
+            <ul>
+              <li>JR八高線「福生駅」より徒歩約10分</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section><!-- /access -->
+
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="site-footer" role="contentinfo">
+    <p class="footer-copy">© 2026 福生カニ坂ロックフェスティバル</p>
+    <a href="https://www.facebook.com/KanizakaRockFestival"
+       target="_blank" rel="noopener noreferrer"
+       class="footer-fb">Facebook</a>
+  </footer>
+
+  <!-- FB Float -->
+  <div class="fb-float">
+    <a href="https://www.facebook.com/KanizakaRockFestival"
+       target="_blank" rel="noopener noreferrer"
+       aria-label="Facebook ページを開く">f</a>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       SCRIPTS — zero external dependencies
+  ═══════════════════════════════════ -->
+  <script>
+  (function () {
+    'use strict';
+
+    /* ── Shared rAF tick gate ── */
+    var rafPending = false;
+
+    /* ─────────────────────────────────
+       1. SMART HEADER
+    ───────────────────────────────── */
+    var hdr     = document.getElementById('hdr');
+    var lastScrollY = 0;
+    var hdrVisible  = true;
+
+    function updateHeader() {
+      var y = window.scrollY;
+      var scrolled = y > 40;
+      var shouldShow = (y < lastScrollY) || y < 80;
+
+      if (scrolled)  hdr.classList.add('scrolled');
+      else           hdr.classList.remove('scrolled');
+
+      if (shouldShow !== hdrVisible) {
+        hdrVisible = shouldShow;
+        hdr.classList.toggle('hidden', !shouldShow);
+      }
+      lastScrollY = y;
+    }
+
+    /* ─────────────────────────────────
+       2. HAMBURGER
+    ───────────────────────────────── */
+    var ham    = document.getElementById('hdrHam');
+    var mobile = document.getElementById('hdrMobile');
+
+    if (ham) {
+      ham.addEventListener('click', function () {
+        var open = mobile.classList.toggle('open');
+        ham.classList.toggle('open', open);
+        ham.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+      });
+      mobile.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          mobile.classList.remove('open');
+          ham.classList.remove('open');
+          ham.setAttribute('aria-label', 'メニューを開く');
+        });
+      });
+    }
+
+    /* ─────────────────────────────────
+       3. PARALLAX
+    ───────────────────────────────── */
+    var heroBg      = document.getElementById('heroBg');
+    var heroContent = document.getElementById('heroContent');
+    var msgWrap     = document.getElementById('msgPhotoWrap');
+
+    function applyParallax() {
+      var y = window.scrollY;
+
+      /* Hero background — moves at 0.28× scroll speed */
+      if (heroBg) {
+        heroBg.style.transform = 'translateY(' + (y * 0.28) + 'px)';
+      }
+
+      /* Hero content — drifts up & fades out */
+      if (heroContent) {
+        var opacity = Math.max(0, 1 - y / 360);
+        var dy      = y * -0.14;
+        heroContent.style.transform = 'translateY(' + dy + 'px)';
+        heroContent.style.opacity   = opacity;
+      }
+
+      /* Message photo — independent slow scroll */
+      if (msgWrap) {
+        var msgRect  = msgWrap.parentElement.getBoundingClientRect();
+        var msgRel   = -msgRect.top;
+        msgWrap.style.transform = 'translateY(' + (msgRel * 0.12) + 'px)';
+      }
+
+
+      rafPending = false;
+    }
+
+    /* ─────────────────────────────────
+       4. CRAB HOVER
+    ───────────────────────────────── */
+
+    /* ─────────────────────────────────
+       5. SCROLL REVEAL (IntersectionObserver)
+    ───────────────────────────────── */
+    function setupReveal() {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        els.forEach(function (el) { el.classList.add('visible'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '-44px 0px' });
+      els.forEach(function (el) { io.observe(el); });
+    }
+
+    /* ─────────────────────────────────
+       6. UNIFIED SCROLL LISTENER
+    ───────────────────────────────── */
+    window.addEventListener('scroll', function () {
+      updateHeader();
+      if (!rafPending) {
+        rafPending = true;
+        requestAnimationFrame(applyParallax);
+      }
+    }, { passive: true });
+
+    /* ─────────────────────────────────
+       HERO MIXED SLIDER (photo + video)
+    ───────────────────────────────── */
+    (function () {
+      var slides = heroBg ? Array.from(heroBg.querySelectorAll('.hero-slide')) : [];
+      var dots   = Array.from(document.querySelectorAll('#heroDots .hero-dot'));
+      var total  = slides.length;
+      if (total < 2) return;
+
+      var cur         = 0;
+      var imgTimer    = null;  // timer for photo slides
+      var IMAGE_DWELL = 5000; // ms to show each photo
+
+      /* Get <video> inside a slide if any */
+      function getVideo(slide) {
+        return slide.querySelector('video');
+      }
+
+      /* Stop any running image timer */
+      function clearImg() {
+        if (imgTimer) { clearTimeout(imgTimer); imgTimer = null; }
+      }
+
+      /* Advance to next slide */
+      function next() { goTo((cur + 1) % total); }
+
+      /* Switch to slide idx */
+      function goTo(idx) {
+        clearImg();
+
+        // Deactivate current
+        var prevVid = getVideo(slides[cur]);
+        if (prevVid) { prevVid.pause(); }
+        slides[cur].classList.remove('active');
+        dots[cur]  && dots[cur].classList.remove('active');
+
+        cur = (idx + total) % total;
+
+        // Activate next
+        slides[cur].classList.add('active');
+        dots[cur]  && dots[cur].classList.add('active');
+
+        var vid = getVideo(slides[cur]);
+        if (vid) {
+          // Video slide: play, advance on ended
+          vid.currentTime = 0;
+          vid.play().catch(function(){});
+          vid._heroHandler && vid.removeEventListener('ended', vid._heroHandler);
+          vid._heroHandler = function() { next(); };
+          vid.addEventListener('ended', vid._heroHandler, { once: true });
+        } else {
+          // Photo slide: 横パンアニメーションをリスタート
+          var img = slides[cur].querySelector('img');
+          if (img) {
+            // クラス削除→リフロー→付け直しでアニメーションをリセット
+            img.classList.remove('pan-right', 'pan-left');
+            void img.offsetWidth; // reflow
+            img.classList.add(cur % 4 === 1 ? 'pan-right' : 'pan-left');
+          }
+          // 写真スライド: IMAGE_DWELL ms 後に次へ
+          imgTimer = setTimeout(next, IMAGE_DWELL);
+        }
+      }
+
+      // Start: play first slide (video)
+      var firstVid = getVideo(slides[0]);
+      if (firstVid) {
+        firstVid.play().catch(function(){});
+        firstVid._heroHandler = function() { next(); };
+        firstVid.addEventListener('ended', firstVid._heroHandler, { once: true });
+      } else {
+        imgTimer = setTimeout(next, IMAGE_DWELL);
+      }
+
+      // Dot clicks
+      dots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+          goTo(parseInt(dot.dataset.idx, 10));
+        });
+      });
+    }());
+
+
+    /* ─────────────────────────────────
+       LIGHTBOX
+    ───────────────────────────────── */
+    (function () {
+      var overlay  = document.getElementById('lbOverlay');
+      var imgWrap  = document.getElementById('lbImgWrap');
+      var titleEl  = document.getElementById('lbTitle');
+      var counter  = document.getElementById('lbCounter');
+      var btnClose = document.getElementById('lbClose');
+      var btnPrev  = document.getElementById('lbPrev');
+      var btnNext  = document.getElementById('lbNext');
+      if (!overlay) return;
+
+      // Collect all flyer cards in order
+      var cards = Array.from(document.querySelectorAll('.flyer-card'));
+      var cur   = 0;
+
+      // Extract display info from each card
+      function getInfo(card) {
+        var dateEl  = card.querySelector('.flyer-date');
+        var venueEl = card.querySelector('.flyer-venue');
+        return (dateEl  ? dateEl.textContent  : '') +
+               (venueEl ? '  ' + venueEl.textContent : '');
+      }
+
+      // Clone the flyer image (SVG or img) into the lightbox
+      function loadSlide(idx) {
+        cur = (idx + cards.length) % cards.length;
+        imgWrap.innerHTML = '';
+
+        var srcWrap = cards[cur].querySelector('.flyer-img-wrap');
+        if (srcWrap) {
+          var clone = srcWrap.cloneNode(true);
+          // remove zoom ::after pseudo interference
+          imgWrap.appendChild(clone);
+        }
+
+        titleEl.textContent  = getInfo(cards[cur]);
+        counter.textContent  = (cur + 1) + ' / ' + cards.length;
+      }
+
+      function open(idx) {
+        loadSlide(idx);
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        btnClose.focus();
+      }
+
+      function close() {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+        // Return focus to the triggering card
+        cards[cur] && cards[cur].focus();
+      }
+
+      // Card click / keyboard
+      cards.forEach(function (card) {
+        card.addEventListener('click', function () {
+          open(parseInt(card.dataset.lb, 10));
+        });
+        card.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            open(parseInt(card.dataset.lb, 10));
+          }
+        });
+      });
+
+      // Controls
+      btnClose.addEventListener('click', close);
+      btnPrev.addEventListener('click',  function () { loadSlide(cur - 1); });
+      btnNext.addEventListener('click',  function () { loadSlide(cur + 1); });
+
+      // Click outside stage → close
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) close();
+      });
+
+      // Keyboard nav
+      document.addEventListener('keydown', function (e) {
+        if (!overlay.classList.contains('open')) return;
+        if (e.key === 'Escape')      close();
+        if (e.key === 'ArrowLeft')   loadSlide(cur - 1);
+        if (e.key === 'ArrowRight')  loadSlide(cur + 1);
+      });
+    }());
+
+    /* ─────────────────────────────────
+       INIT
+    ───────────────────────────────── */
+    updateHeader();
+    applyParallax();
+    setupReveal();
+
+  }());
+  </script>
+
+</body>
+</html>
