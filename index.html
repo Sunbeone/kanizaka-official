@@ -446,7 +446,7 @@
       width: 100%; height: 100%;
       display: block;
       object-fit: contain;
-      background: #111110;
+      background: #ffffff;
       transition: transform 0.7s var(--ease-expo);
     }
     .flyer-img-wrap svg {
@@ -1016,7 +1016,7 @@
 
         <!-- 0: stage.mp4 -->
         <div class="hero-slide active" data-type="video">
-          <video src="images/stage.mp4" muted playsinline preload="auto" id="hslide-v0"></video>
+          <video src="images/stage.mp4" muted playsinline autoplay loop preload="auto" id="hslide-v0"></video>
         </div>
 
         <!-- 1: hero1.jpg -->
@@ -1026,7 +1026,7 @@
 
         <!-- 2: cocoon.mp4 -->
         <div class="hero-slide" data-type="video">
-          <video src="images/cocoon.mp4" muted playsinline preload="auto" id="hslide-v2"></video>
+          <video src="images/cocoon.mp4" muted playsinline autoplay loop preload="auto" id="hslide-v2"></video>
         </div>
 
         <!-- 3: hero3.jpg -->
@@ -1087,14 +1087,11 @@
 
         <div class="flyer-grid">
 
-          <!-- 1: Coming Soon -->
-          <div class="flyer-card coming-soon reveal">
+          <!-- 1: Chicken Shack フライヤー -->
+          <div class="flyer-card reveal" tabindex="0" data-lb="0"
+               aria-label="フライヤーを拡大表示: 3/29 福生Chicken Shack">
             <div class="flyer-img-wrap">
-              <div class="flyer-coming-soon" aria-hidden="true">
-                <div class="flyer-coming-soon-line"></div>
-                <span class="flyer-coming-soon-text">Coming Soon</span>
-                <div class="flyer-coming-soon-line"></div>
-              </div>
+              <img src="images/chickenshack2026.jpg" alt="3/29（日）福生Chicken Shack 支援ライブフライヤー" loading="lazy">
             </div>
             <div class="flyer-caption">
               <span class="flyer-date">3/29（日）</span>
