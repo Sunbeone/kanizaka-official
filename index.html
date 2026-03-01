@@ -446,7 +446,7 @@
       width: 100%; height: 100%;
       display: block;
       object-fit: contain;
-      background: #ffffff;
+      background: #d8d8d2;
       transition: transform 0.7s var(--ease-expo);
     }
     .flyer-img-wrap svg {
@@ -526,6 +526,17 @@
       color: rgba(66,66,66,0.55);
       letter-spacing: 0.04em;
     }
+    .flyer-venue a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: rgba(66,66,66,0.22);
+      text-underline-offset: 2px;
+      transition: color 0.2s ease, text-decoration-color 0.2s ease;
+    }
+    .flyer-venue a:hover {
+      color: var(--forest);
+      text-decoration-color: var(--forest);
+    }
 
     /* ── LIGHTBOX ── */
     .lb-overlay {
@@ -546,7 +557,7 @@
     }
     .lb-stage {
       position: relative;
-      max-width: min(90vw, 440px);
+      max-width: min(92vw, 520px);
       max-height: 90vh;
       display: flex;
       flex-direction: column;
@@ -554,16 +565,24 @@
     }
     .lb-img-wrap {
       width: 100%;
-      aspect-ratio: 3 / 4;
       overflow: hidden;
       background: #1a1a1a;
       border: 1px solid rgba(255,255,255,0.08);
     }
-    .lb-img-wrap img,
-    .lb-img-wrap svg {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
+    /* cloneされた .flyer-img-wrap のサイズをLightbox用に上書き */
+    .lb-img-wrap .flyer-img-wrap {
+      aspect-ratio: auto !important;
+      height: auto !important;
+      max-height: 76vh;
+      background: #d8d8d2;
+      border: none;
+    }
+    .lb-img-wrap .flyer-img-wrap img {
+      width: 100%;
+      height: auto !important;
+      max-height: 76vh;
+      object-fit: contain !important;
+      background: #fff;
     }
     .lb-info {
       width: 100%;
@@ -906,7 +925,7 @@
 
       /* イベントタイトル */
       .hero-name {
-        font-size: clamp(1.2rem, 6vw, 1.8rem);
+        font-size: clamp(1.0rem, 4.8vw, 1.4rem);
         letter-spacing: 0.06em;
       }
       .hero-vol {
@@ -1077,12 +1096,12 @@
       <div class="container">
 
         <div class="extra-live-header">
-          <span class="eyebrow reveal">Extra Live</span>
+          <span class="eyebrow reveal">やるぜカニ坂！EXTRA LIVE</span>
           <h2 class="section-heading reveal d1">支援ライブ</h2>
         </div>
         <p class="extra-live-desc reveal d2">
-          入場無料で開催するカニ坂ロックフェスティバルを支援するための箱イベントです。<br>
-          ライブハウスで楽しみながら、フェスを一緒に盛り上げよう。
+          歴史あるフリーフェスを続けていくための支援ライブを開催！<br>
+          入場料の一部がカニ坂ロックフェスの運営資金になります。ラインナップはまさにガチンコ！最高の音で騒いでフェスを一緒に盛り上げよう！追加のドネーション（投げ銭）も大歓迎。カモン、カニ坂ラバーズ！
         </p>
 
         <div class="flyer-grid">
@@ -1095,7 +1114,7 @@
             </div>
             <div class="flyer-caption">
               <span class="flyer-date">3/29（日）</span>
-              <span class="flyer-venue">福生 Chicken Shack</span>
+              <span class="flyer-venue"><a href="https://www.phussa.net/" target="_blank" rel="noopener noreferrer">福生 Chicken Shack</a></span>
             </div>
           </div>
 
@@ -1107,7 +1126,7 @@
             </div>
             <div class="flyer-caption">
               <span class="flyer-date">4/11（土）</span>
-              <span class="flyer-venue">東福生 UZU</span>
+              <span class="flyer-venue"><a href="https://uzu.jpn.org/" target="_blank" rel="noopener noreferrer">東福生 UZU</a></span>
             </div>
           </div>
 
@@ -1122,7 +1141,7 @@
             </div>
             <div class="flyer-caption">
               <span class="flyer-date">4/26（日）</span>
-              <span class="flyer-venue">福生 DISCO EDDIE'S</span>
+              <span class="flyer-venue"><a href="https://www.instagram.com/disco_club_eddies/" target="_blank" rel="noopener noreferrer">福生 DISCO EDDIE'S</a></span>
             </div>
           </div>
 
@@ -1137,7 +1156,7 @@
             </div>
             <div class="flyer-caption">
               <span class="flyer-date">5/9（土）</span>
-              <span class="flyer-venue">新所沢 THE ROCK</span>
+              <span class="flyer-venue"><a href="https://the-rock-shintoko.com/" target="_blank" rel="noopener noreferrer">新所沢 THE ROCK</a></span>
             </div>
           </div>
 
@@ -1275,7 +1294,7 @@
           <div class="access-block reveal d1">
             <span class="access-block-title">電車</span>
             <ul>
-              <li>JR八高線「福生駅」より徒歩約10分</li>
+              <li>JR青梅線「福生駅」より徒歩約15分</li>
             </ul>
           </div>
         </div>
@@ -1485,6 +1504,14 @@
         }
       }
 
+      // iOS対策: 全動画を一度playしてprimeしてからpause（ユーザー操作なしでの再生を許可させる）
+      slides.forEach(function (slide) {
+        var v = getVideo(slide);
+        if (v && !slide.classList.contains('active')) {
+          v.play().then(function () { v.pause(); v.currentTime = 0; }).catch(function(){});
+        }
+      });
+
       // Start: play first slide (video)
       var firstVid = getVideo(slides[0]);
       if (firstVid) {
@@ -1517,11 +1544,11 @@
       var btnNext  = document.getElementById('lbNext');
       if (!overlay) return;
 
-      // Collect all flyer cards in order
-      var cards = Array.from(document.querySelectorAll('.flyer-card'));
-      var cur   = 0;
+      // 実画像カードのみ（data-lb属性あり）を対象にする
+      var allCards = Array.from(document.querySelectorAll('.flyer-card'));
+      var lbCards  = allCards.filter(function (c) { return 'lb' in c.dataset; });
+      var cur = 0;
 
-      // Extract display info from each card
       function getInfo(card) {
         var dateEl  = card.querySelector('.flyer-date');
         var venueEl = card.querySelector('.flyer-venue');
@@ -1529,24 +1556,22 @@
                (venueEl ? '  ' + venueEl.textContent : '');
       }
 
-      // Clone the flyer image (SVG or img) into the lightbox
       function loadSlide(idx) {
-        cur = (idx + cards.length) % cards.length;
+        cur = ((idx % lbCards.length) + lbCards.length) % lbCards.length;
         imgWrap.innerHTML = '';
-
-        var srcWrap = cards[cur].querySelector('.flyer-img-wrap');
-        if (srcWrap) {
-          var clone = srcWrap.cloneNode(true);
-          // remove zoom ::after pseudo interference
-          imgWrap.appendChild(clone);
-        }
-
-        titleEl.textContent  = getInfo(cards[cur]);
-        counter.textContent  = (cur + 1) + ' / ' + cards.length;
+        var srcWrap = lbCards[cur].querySelector('.flyer-img-wrap');
+        if (srcWrap) imgWrap.appendChild(srcWrap.cloneNode(true));
+        titleEl.textContent = getInfo(lbCards[cur]);
+        counter.textContent = (cur + 1) + ' / ' + lbCards.length;
       }
 
-      function open(idx) {
-        loadSlide(idx);
+      function open(lbVal) {
+        var pos = lbCards.findIndex(function (c) {
+          return parseInt(c.dataset.lb, 10) === lbVal;
+        });
+        if (isNaN(lbVal) || pos < 0) return;
+        cur = pos;
+        loadSlide(cur);
         overlay.classList.add('open');
         document.body.style.overflow = 'hidden';
         btnClose.focus();
@@ -1555,27 +1580,23 @@
       function close() {
         overlay.classList.remove('open');
         document.body.style.overflow = '';
-        // Return focus to the triggering card
-        cards[cur] && cards[cur].focus();
+        lbCards[cur] && lbCards[cur].focus();
       }
 
-      // Card click / keyboard
-      cards.forEach(function (card) {
-        card.addEventListener('click', function () {
-          open(parseInt(card.dataset.lb, 10));
-        });
+      // カードクリック / キーボード
+      allCards.forEach(function (card) {
+        var lb = parseInt(card.dataset.lb, 10);
+        if (isNaN(lb)) return; // Coming Soonは無視
+        card.addEventListener('click', function () { open(lb); });
         card.addEventListener('keydown', function (e) {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            open(parseInt(card.dataset.lb, 10));
-          }
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(lb); }
         });
       });
 
       // Controls
       btnClose.addEventListener('click', close);
-      btnPrev.addEventListener('click',  function () { loadSlide(cur - 1); });
-      btnNext.addEventListener('click',  function () { loadSlide(cur + 1); });
+      btnPrev.addEventListener('click', function () { loadSlide(cur - 1); });
+      btnNext.addEventListener('click', function () { loadSlide(cur + 1); });
 
       // Click outside stage → close
       overlay.addEventListener('click', function (e) {
