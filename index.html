@@ -3,11 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="1970年代から福生のカニ坂公園で続く入場無料の野外ロックフェス。2026年5月22日（金）〜24日（日）開催。vol.41">
+  <meta name="description" content="1970年代から福生のカニ坂公園で続く、自由とDIY精神を掲げた入場無料の野外フェス。地元のローカルバンドから多彩な演者が集い、多摩川沿いの開放的な空間で共演します。個性豊かな飲食店や雑貨の出店も並び、地域と音楽が一体となる手作り感溢れる伝説的なイベントです。">
   <meta property="og:title"       content="福生カニ坂ロックフェスティバル 2026 vol.41">
   <meta property="og:description" content="前夜祭 5月22日（金）／本祭 5月23日（土）・24日（日） — 入場無料">
-  <meta property="og:image"       content="images/ogp.jpg">
-  <title>福生カニ坂ロックフェスティバル 2026 vol.41</title>
+  <meta property="og:image"       content="images/kani.jpg">
+  <title>福生カニ坂ロックフェスティバル</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F64PRL9LPF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F64PRL9LPF');
+  </script>
 
   <!-- Google Fonts — system-font fallbacks if blocked -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1017,6 +1026,7 @@
   <header class="hdr" id="hdr">
     <div class="hdr-inner">
       <nav class="hdr-nav">
+        <a href="#extra-live">Ex Live</a>
         <a href="#message">Message</a>
         <a href="#concept">Concept</a>
         <a href="#access">Access</a>
@@ -1026,6 +1036,7 @@
       </button>
     </div>
     <nav class="hdr-mobile" id="hdrMobile">
+      <a href="#extra-live">Ex Live</a>
       <a href="#message">Message</a>
       <a href="#concept">Concept</a>
       <a href="#access">Access</a>
@@ -1605,6 +1616,11 @@
         document.body.style.overflow = '';
         lbCards[cur] && lbCards[cur].focus();
       }
+
+      // 会場リンクのクリックはLightboxに伝播させない
+      document.querySelectorAll('.flyer-venue a').forEach(function (a) {
+        a.addEventListener('click', function (e) { e.stopPropagation(); });
+      });
 
       // カードクリック / キーボード
       allCards.forEach(function (card) {
