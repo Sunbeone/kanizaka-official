@@ -259,6 +259,13 @@
       object-position: center;
       display: block;
     }
+    /* iOSネイティブ動画コントロールを非表示 */
+    .hero-slide video::-webkit-media-controls,
+    .hero-slide video::-webkit-media-controls-enclosure,
+    .hero-slide video::-webkit-media-controls-panel {
+      display: none !important;
+      -webkit-appearance: none;
+    }
     .hero-slide img {
       filter: brightness(0.88);
       /* 少し大きくしてパン余白を確保 */
@@ -1504,14 +1511,6 @@
         }
       }
 
-      // iOS対策: 全動画を一度playしてprimeしてからpause（ユーザー操作なしでの再生を許可させる）
-      slides.forEach(function (slide) {
-        var v = getVideo(slide);
-        if (v && !slide.classList.contains('active')) {
-          v.play().then(function () { v.pause(); v.currentTime = 0; }).catch(function(){});
-        }
-      });
-
       // Start: play first slide (video)
       var firstVid = getVideo(slides[0]);
       if (firstVid) {
@@ -1521,6 +1520,30 @@
       } else {
         imgTimer = setTimeout(next, IMAGE_DWELL);
       }
+
+      // iOS対策: 最初のタッチで動画再生をアンロック
+      var mediaUnlocked = false;
+      function unlockMedia() {
+        if (mediaUnlocked) return;
+        mediaUnlocked = true;
+        // 現在のスライドが動画なら再生
+        var v = getVideo(slides[cur]);
+        if (v && v.paused) {
+          v.play().catch(function(){});
+          v._heroHandler && v.removeEventListener('ended', v._heroHandler);
+          v._heroHandler = function() { next(); };
+          v.addEventListener('ended', v._heroHandler, { once: true });
+        }
+        // 非アクティブ動画をprime（後の切り替えをスムーズに）
+        slides.forEach(function (slide) {
+          var sv = getVideo(slide);
+          if (sv && sv !== v) {
+            sv.play().then(function() { sv.pause(); sv.currentTime = 0; }).catch(function(){});
+          }
+        });
+      }
+      document.addEventListener('touchstart', unlockMedia, { once: true, passive: true });
+      document.addEventListener('click',      unlockMedia, { once: true });
 
       // Dot clicks
       dots.forEach(function (dot) {
