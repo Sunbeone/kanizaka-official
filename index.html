@@ -398,11 +398,21 @@
       color: rgba(255,255,255,0.82);
       text-shadow: 0 2px 12px rgba(0,0,0,0.65);
       font-weight: 400;
+      display: block;
     }
     .hero-chip-val.bold {
       color: white;
       font-weight: 600;
       font-size: 1.3rem;
+    }
+    .hero-chip-day {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.50);
+      text-shadow: 0 1px 8px rgba(0,0,0,0.55);
+      margin-top: 0.25rem;
+      font-weight: 400;
     }
     .hero-divider { width: 1px; height: 2.8rem; background: rgba(255,255,255,0.2); }
 
@@ -1090,12 +1100,14 @@
         <div class="hero-chips">
           <div class="hero-chip">
             <span class="hero-chip-label">前夜祭</span>
-            <span class="hero-chip-val">05.22 FRI</span>
+            <span class="hero-chip-val">05.22</span>
+            <span class="hero-chip-day">FRI</span>
           </div>
           <div class="hero-divider"></div>
           <div class="hero-chip">
             <span class="hero-chip-label green">本祭</span>
             <span class="hero-chip-val bold">05.23–24</span>
+            <span class="hero-chip-day">SAT – SUN</span>
           </div>
           <div class="hero-divider"></div>
           <div class="hero-chip">
