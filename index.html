@@ -869,6 +869,153 @@
     .concept-card:hover .concept-card-rule { transform: scaleX(1); }
 
     /* ═══════════════════════════════════
+       GALLERY
+    ═══════════════════════════════════ */
+    .gallery {
+      background: #1e1e1c;
+      padding: 5.5rem 0 0;
+      overflow: hidden;
+    }
+    .gallery .container { padding-bottom: 0; }
+    .gallery .eyebrow { color: var(--forest2); }
+    .gallery .section-heading { color: rgba(255,255,255,0.88); }
+    .gallery-desc {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.32);
+      letter-spacing: 0.18em;
+      margin-top: 0.6rem;
+      margin-bottom: 2.8rem;
+    }
+
+    /* グリッド本体 — コンテナ幅ではなく画面幅いっぱい */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 220px;
+      grid-auto-flow: dense;
+      gap: 3px;
+      margin-top: 2rem;
+    }
+    @media (min-width: 1200px) { .gallery-grid { grid-auto-rows: 260px; } }
+    @media (max-width: 767px)  { .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; } }
+
+    /* 各アイテム */
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      background: #2e2e2b;
+      cursor: zoom-in;
+    }
+    .gallery-item.tall { grid-row: span 2; }
+    .gallery-item.wide { grid-column: span 2; }
+
+    /* ワイヤーフレームプレースホルダー */
+    .gallery-ph {
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      background: linear-gradient(135deg, #2a2a27 0%, #252521 100%);
+      transition: background 0.3s ease;
+    }
+    .gallery-item:hover .gallery-ph {
+      background: linear-gradient(135deg, #303030 0%, #2a2a27 100%);
+    }
+    .gallery-ph-icon {
+      opacity: 0.14;
+      transition: opacity 0.3s ease;
+    }
+    .gallery-item:hover .gallery-ph-icon { opacity: 0.22; }
+    .gallery-ph-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.14);
+      font-family: 'Inter', sans-serif;
+      transition: color 0.3s ease;
+    }
+    .gallery-item:hover .gallery-ph-label { color: rgba(255,255,255,0.22); }
+
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.7s var(--ease-expo);
+    }
+    .gallery-item:hover img { transform: scale(1.04); }
+
+    /* ─── ギャラリー Lightbox ─── */
+    .glb-overlay {
+      position: fixed; inset: 0; z-index: 9100;
+      background: rgba(0,0,0,0.95);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.28s ease;
+    }
+    .glb-overlay.open { opacity: 1; pointer-events: all; }
+    .glb-img-wrap {
+      flex: 1;
+      display: flex; align-items: center; justify-content: center;
+      height: 100vh; padding: 3.5rem 5rem;
+    }
+    .glb-img-wrap img {
+      max-width: 100%; max-height: 100%;
+      object-fit: contain;
+      display: block;
+      border-radius: 2px;
+      box-shadow: 0 8px 60px rgba(0,0,0,0.7);
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .glb-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: white; cursor: pointer;
+      width: 52px; height: 52px; border-radius: 50%;
+      font-size: 1.8rem; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      z-index: 2;
+    }
+    .glb-btn:hover { background: rgba(255,255,255,0.22); }
+    .glb-prev { left: clamp(0.5rem, 1.5vw, 1.2rem); }
+    .glb-next { right: clamp(0.5rem, 1.5vw, 1.2rem); }
+    .glb-close {
+      position: absolute; top: 1rem; right: 1.2rem;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: white; cursor: pointer;
+      width: 44px; height: 44px; border-radius: 50%;
+      font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      z-index: 2;
+    }
+    .glb-close:hover { background: rgba(255,255,255,0.22); }
+    .glb-counter {
+      position: absolute; bottom: 1.2rem; left: 50%; transform: translateX(-50%);
+      font-size: 0.76rem; letter-spacing: 0.22em;
+      color: rgba(255,255,255,0.38);
+      font-family: 'Inter', sans-serif;
+      pointer-events: none;
+    }
+    @media (max-width: 767px) {
+      .glb-img-wrap { padding: 3rem 0.5rem; }
+      .glb-btn { width: 40px; height: 40px; font-size: 1.4rem; }
+      .glb-prev { left: 0.2rem; }
+      .glb-next { right: 0.2rem; }
+    }
+
+    @media (max-width: 767px) {
+      .gallery { padding: 4rem 0 0; }
+      .gallery-desc { margin-bottom: 2rem; }
+    }
+
+    /* ═══════════════════════════════════
        NOTES / 注意事項
     ═══════════════════════════════════ */
     .notes {
@@ -1124,6 +1271,7 @@
         <a href="#extra-live">Ex Live</a>
         <a href="#message">Message</a>
         <a href="#concept">Concept</a>
+        <a href="#gallery">Gallery</a>
         <a href="#notes">Notes</a>
         <a href="#access">Access</a>
       </nav>
@@ -1135,6 +1283,7 @@
       <a href="#extra-live">Ex Live</a>
       <a href="#message">Message</a>
       <a href="#concept">Concept</a>
+      <a href="#gallery">Gallery</a>
       <a href="#notes">Notes</a>
       <a href="#access">Access</a>
     </nav>
@@ -1290,6 +1439,17 @@
       </div><!-- /container -->
     </section><!-- /extra-live -->
 
+    <!-- ═══ GALLERY LIGHTBOX ═══ -->
+    <div class="glb-overlay" id="glbOverlay" role="dialog" aria-modal="true" aria-label="ギャラリー拡大表示">
+      <button class="glb-close" id="glbClose" aria-label="閉じる">✕</button>
+      <button class="glb-btn glb-prev" id="glbPrev" aria-label="前の写真">&#8249;</button>
+      <div class="glb-img-wrap">
+        <img id="glbImg" src="" alt="">
+      </div>
+      <button class="glb-btn glb-next" id="glbNext" aria-label="次の写真">&#8250;</button>
+      <div class="glb-counter" id="glbCounter"></div>
+    </div>
+
     <!-- ── LIGHTBOX OVERLAY ── -->
     <div class="lb-overlay" id="lbOverlay" role="dialog" aria-modal="true" aria-label="フライヤー拡大表示">
       <div class="lb-stage">
@@ -1396,6 +1556,219 @@
       </div>
     </section><!-- /concept -->
 
+
+    <!-- ═══ GALLERY ═══ -->
+    <section id="gallery" class="gallery">
+      <div class="container">
+        <span class="eyebrow reveal">Photo Gallery</span>
+        <h2 class="section-heading reveal d1">ギャラリー</h2>
+        <p class="gallery-desc reveal d2">2025 — 昨年の模様</p>
+      </div>
+
+      <div class="gallery-grid">
+
+        <div class="gallery-item tall reveal">
+          <img src="images/gallery/web/kanizaka2025_001.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy" style="object-position:top center">
+        </div>
+
+        <div class="gallery-item reveal d1">
+          <img src="images/gallery/web/kanizaka2025_002.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d2">
+          <img src="images/gallery/web/kanizaka2025_003.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item tall reveal d3">
+          <img src="images/gallery/web/kanizaka2025_004.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy" style="object-position:top center">
+        </div>
+
+        <div class="gallery-item reveal">
+          <img src="images/gallery/web/kanizaka2025_005.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d1">
+          <img src="images/gallery/web/kanizaka2025_006.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d2">
+          <img src="images/gallery/web/kanizaka2025_007.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d3">
+          <img src="images/gallery/web/kanizaka2025_008.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal">
+          <img src="images/gallery/web/kanizaka2025_009.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item wide reveal d1">
+          <img src="images/gallery/web/kanizaka2025_010.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d2">
+          <img src="images/gallery/web/kanizaka2025_011.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d3">
+          <img src="images/gallery/web/kanizaka2025_012.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal">
+          <img src="images/gallery/web/kanizaka2025_013.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d1">
+          <img src="images/gallery/web/kanizaka2025_014.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d2">
+          <img src="images/gallery/web/kanizaka2025_015.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d3">
+          <img src="images/gallery/web/kanizaka2025_016.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item wide reveal">
+          <img src="images/gallery/web/kanizaka2025_017.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item tall reveal d1">
+          <img src="images/gallery/web/kanizaka2025_018.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy" style="object-position:top center">
+        </div>
+
+        <div class="gallery-item reveal d2">
+          <img src="images/gallery/web/kanizaka2025_019.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d3">
+          <img src="images/gallery/web/kanizaka2025_020.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal">
+          <img src="images/gallery/web/kanizaka2025_021.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d1">
+          <img src="images/gallery/web/kanizaka2025_022.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d2">
+          <img src="images/gallery/web/kanizaka2025_023.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d3">
+          <img src="images/gallery/web/kanizaka2025_024.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item wide reveal">
+          <img src="images/gallery/web/kanizaka2025_025.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d1">
+          <img src="images/gallery/web/kanizaka2025_026.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d2">
+          <img src="images/gallery/web/kanizaka2025_027.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d3">
+          <img src="images/gallery/web/kanizaka2025_028.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal">
+          <img src="images/gallery/web/kanizaka2025_029.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d1">
+          <img src="images/gallery/web/kanizaka2025_030.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d2">
+          <img src="images/gallery/web/kanizaka2025_031.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item wide reveal d3">
+          <img src="images/gallery/web/kanizaka2025_032.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal">
+          <img src="images/gallery/web/kanizaka2025_033.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item tall reveal d1">
+          <img src="images/gallery/web/kanizaka2025_034.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy" style="object-position:top center">
+        </div>
+
+        <div class="gallery-item reveal d2">
+          <img src="images/gallery/web/kanizaka2025_035.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d3">
+          <img src="images/gallery/web/kanizaka2025_036.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal">
+          <img src="images/gallery/web/kanizaka2025_037.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d1">
+          <img src="images/gallery/web/kanizaka2025_038.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d2">
+          <img src="images/gallery/web/kanizaka2025_039.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item wide reveal d3">
+          <img src="images/gallery/web/kanizaka2025_040.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal">
+          <img src="images/gallery/web/kanizaka2025_041.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d1">
+          <img src="images/gallery/web/kanizaka2025_042.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d2">
+          <img src="images/gallery/web/kanizaka2025_043.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d3">
+          <img src="images/gallery/web/kanizaka2025_044.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal">
+          <img src="images/gallery/web/kanizaka2025_045.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item tall reveal d1">
+          <img src="images/gallery/web/kanizaka2025_046.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy" style="object-position:top center">
+        </div>
+
+        <div class="gallery-item reveal d2">
+          <img src="images/gallery/web/kanizaka2025_047.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d3">
+          <img src="images/gallery/web/kanizaka2025_048.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal">
+          <img src="images/gallery/web/kanizaka2025_049.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+        <div class="gallery-item reveal d1">
+          <img src="images/gallery/web/kanizaka2025_050.jpg" alt="2025年 カニ坂ロックフェスティバル" loading="lazy">
+        </div>
+
+      </div><!-- /gallery-grid -->
+    </section><!-- /gallery -->
 
     <!-- ═══ NOTES / 注意事項 ═══ -->
     <section id="notes" class="notes">
@@ -1787,6 +2160,71 @@
         if (e.key === 'Escape')      close();
         if (e.key === 'ArrowLeft')   loadSlide(cur - 1);
         if (e.key === 'ArrowRight')  loadSlide(cur + 1);
+      });
+    }());
+
+    /* ─────────────────────────────────
+       GALLERY LIGHTBOX
+    ───────────────────────────────── */
+    (function () {
+      var imgs    = Array.from(document.querySelectorAll('.gallery-item img'));
+      var overlay = document.getElementById('glbOverlay');
+      var glbImg  = document.getElementById('glbImg');
+      var counter = document.getElementById('glbCounter');
+      var btnClose= document.getElementById('glbClose');
+      var btnPrev = document.getElementById('glbPrev');
+      var btnNext = document.getElementById('glbNext');
+      var cur = 0;
+
+      function show(idx) {
+        cur = ((idx % imgs.length) + imgs.length) % imgs.length;
+        glbImg.src = imgs[cur].src;
+        glbImg.alt = imgs[cur].alt;
+        counter.textContent = (cur + 1) + ' / ' + imgs.length;
+      }
+      function open(idx) {
+        show(idx);
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        btnClose.focus();
+      }
+      function close() {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+        glbImg.src = '';
+      }
+
+      // クリックで開く
+      imgs.forEach(function (img, i) {
+        img.parentElement.style.cursor = 'zoom-in';
+        img.parentElement.addEventListener('click', function () { open(i); });
+      });
+
+      btnClose.addEventListener('click', close);
+      btnPrev.addEventListener('click', function () { show(cur - 1); });
+      btnNext.addEventListener('click', function () { show(cur + 1); });
+
+      // 背景クリックで閉じる
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) close();
+      });
+
+      // キーボード
+      document.addEventListener('keydown', function (e) {
+        if (!overlay.classList.contains('open')) return;
+        if (e.key === 'Escape')      close();
+        if (e.key === 'ArrowLeft')   show(cur - 1);
+        if (e.key === 'ArrowRight')  show(cur + 1);
+      });
+
+      // スワイプ（スマホ）
+      var touchX = 0;
+      overlay.addEventListener('touchstart', function (e) {
+        touchX = e.touches[0].clientX;
+      }, { passive: true });
+      overlay.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - touchX;
+        if (Math.abs(dx) > 50) { dx < 0 ? show(cur + 1) : show(cur - 1); }
       });
     }());
 
