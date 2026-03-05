@@ -9,6 +9,9 @@
   <meta property="og:image"       content="images/kani.jpg">
   <title>福生カニ坂ロックフェスティバル</title>
 
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="images/logo.png" type="image/png">
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-F64PRL9LPF"></script>
   <script>
@@ -192,7 +195,7 @@
       display: flex; flex-direction: column; gap: 6px; padding: 4px;
       color: white;
     }
-    .hdr.scrolled .hdr-ham { color: var(--ink); }
+    .hdr.scrolled .hdr-ham { color: var(--charcoal); }
     .hdr-ham span {
       display: block; width: 22px; height: 1.5px;
       background: currentColor;
@@ -215,7 +218,7 @@
       background: rgba(245,245,240,0.98);
       border-top-color: rgba(66,66,66,0.08);
     }
-    .hdr-mobile.open { max-height: 180px; }
+    .hdr-mobile.open { max-height: 220px; }
     .hdr-mobile a {
       display: block; padding: 1rem 1.5rem;
       font-size: 0.82rem; letter-spacing: 0.24em; text-transform: uppercase;
@@ -416,6 +419,35 @@
     }
     .hero-divider { width: 1px; height: 2.8rem; background: rgba(255,255,255,0.2); }
 
+
+    /* ═══════════════════════════════════
+       COUNTDOWN BAR
+    ═══════════════════════════════════ */
+    .countdown-bar {
+      background: var(--forest);
+      padding: 0.82rem 1.5rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .countdown-text {
+      font-size: 0.88rem;
+      letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.92);
+      font-weight: 500;
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .countdown-num {
+      font-size: 1.55rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: white;
+      line-height: 1;
+    }
 
     /* ═══════════════════════════════════
        EXTRA LIVE / 支援ライブ
@@ -837,6 +869,59 @@
     .concept-card:hover .concept-card-rule { transform: scaleX(1); }
 
     /* ═══════════════════════════════════
+       NOTES / 注意事項
+    ═══════════════════════════════════ */
+    .notes {
+      background: var(--paper2);
+      padding: 5.5rem 0 6rem;
+    }
+    .notes-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.8rem;
+    }
+    @media (min-width: 768px) {
+      .notes-grid { grid-template-columns: repeat(2, 1fr); gap: 3.5rem; }
+    }
+    .notes-block-title {
+      display: block;
+      font-size: 0.74rem;
+      letter-spacing: 0.44em;
+      text-transform: uppercase;
+      color: var(--forest);
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(46,125,50,0.2);
+    }
+    .notes-block ul {
+      list-style: none;
+      padding: 0;
+    }
+    .notes-block li {
+      font-size: 0.93rem;
+      line-height: 1.75;
+      color: rgba(66,66,66,0.72);
+      padding: 0.65rem 0 0.65rem 1.4rem;
+      border-bottom: 1px solid rgba(66,66,66,0.07);
+      position: relative;
+    }
+    .notes-block li:last-child { border-bottom: none; }
+    .notes-block li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--forest);
+      font-size: 0.75rem;
+      top: 0.82rem;
+    }
+    @media (max-width: 767px) {
+      .notes { padding: 4rem 0 4.5rem; }
+      .notes-grid { gap: 2.2rem; }
+      .notes-block li { font-size: 0.88rem; }
+    }
+
+    /* ═══════════════════════════════════
        ACCESS
     ═══════════════════════════════════ */
     .access {
@@ -886,7 +971,7 @@
        FOOTER
     ═══════════════════════════════════ */
     .site-footer {
-      background: var(--charcoal);
+      background: var(--forest);
       padding: 1.8rem 1.5rem;
       display: flex;
       flex-direction: column;
@@ -900,7 +985,7 @@
       font-size: 0.72rem;
       letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.26);
+      color: rgba(255,255,255,0.72);
     }
     .footer-fb {
       font-size: 0.72rem;
@@ -1039,6 +1124,7 @@
         <a href="#extra-live">Ex Live</a>
         <a href="#message">Message</a>
         <a href="#concept">Concept</a>
+        <a href="#notes">Notes</a>
         <a href="#access">Access</a>
       </nav>
       <button class="hdr-ham" id="hdrHam" aria-label="メニューを開く">
@@ -1049,6 +1135,7 @@
       <a href="#extra-live">Ex Live</a>
       <a href="#message">Message</a>
       <a href="#concept">Concept</a>
+      <a href="#notes">Notes</a>
       <a href="#access">Access</a>
     </nav>
   </header>
@@ -1119,6 +1206,15 @@
 
     </section><!-- /hero -->
 
+
+    <!-- ═══ COUNTDOWN BAR ═══ -->
+    <div class="countdown-bar" id="countdownBar">
+      <p class="countdown-text">
+        <span>カニ坂ロックフェスまであと</span>
+        <span class="countdown-num" id="countdownNum">…</span>
+        <span>日</span>
+      </p>
+    </div>
 
     <!-- ═══ EXTRA LIVE / 支援ライブ ═══ -->
     <section id="extra-live" class="extra-live">
@@ -1301,6 +1397,40 @@
     </section><!-- /concept -->
 
 
+    <!-- ═══ NOTES / 注意事項 ═══ -->
+    <section id="notes" class="notes">
+      <div class="container">
+        <span class="eyebrow reveal">Notes</span>
+        <h2 class="section-heading reveal d1" style="margin-bottom:2.8rem">注意事項</h2>
+
+        <div class="notes-grid">
+
+          <div class="notes-block reveal d1">
+            <span class="notes-block-title">会場について</span>
+            <ul>
+              <li>駐車場はありません。迷惑駐車はお断りいたします。</li>
+              <li>かに坂公園近隣道路およびS&Dフィールド福生（市営競技場）は駐車禁止です。</li>
+              <li>会場へは、徒歩 or 自転車でお越しください。（自転車は駐輪場に！）</li>
+              <li>会場では現金が使えません。日本円を「カニー券」に替えてお楽しみください。</li>
+              <li>テント等での宿泊は出来ません。</li>
+              <li>次の人の為にトイレは綺麗に使いましょう。</li>
+            </ul>
+          </div>
+
+          <div class="notes-block reveal d2">
+            <span class="notes-block-title">ゴミに関するお願い</span>
+            <ul>
+              <li>会場内にゴミ箱はありません。</li>
+              <li>飲食物の持ち込みは禁止ではありませんが、ゴミは各自で持ち帰って下さい。</li>
+              <li>帰宅途中でのポイ捨ても禁止です。特に自販機のゴミ箱とか絶対ダメ！</li>
+              <li>会場内で購入した飲食物の容器は、買ったお店で回収するので楽ですよ♪</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- /notes -->
+
     <!-- ═══ ACCESS ═══ -->
     <section id="access" class="access">
       <div class="container">
@@ -1336,9 +1466,6 @@
   <!-- ═══ FOOTER ═══ -->
   <footer class="site-footer" role="contentinfo">
     <p class="footer-copy">© 2026 福生カニ坂ロックフェスティバル</p>
-    <a href="https://www.facebook.com/KanizakaRockFestival"
-       target="_blank" rel="noopener noreferrer"
-       class="footer-fb">Facebook</a>
   </footer>
 
   <!-- FB Float -->
@@ -1661,6 +1788,26 @@
         if (e.key === 'ArrowLeft')   loadSlide(cur - 1);
         if (e.key === 'ArrowRight')  loadSlide(cur + 1);
       });
+    }());
+
+    /* ─────────────────────────────────
+       COUNTDOWN
+    ───────────────────────────────── */
+    (function () {
+      var numEl = document.getElementById('countdownNum');
+      var bar   = document.getElementById('countdownBar');
+      if (!numEl) return;
+      var target = new Date('2026-05-23T00:00:00+09:00');
+      var now    = new Date();
+      var diff   = Math.ceil((target - now) / (1000 * 60 * 60 * 24));
+      if (diff > 0) {
+        numEl.textContent = diff;
+      } else if (diff === 0) {
+        bar.querySelector('.countdown-text').innerHTML =
+          '<span>🎸 いよいよ今日！カニ坂ロックフェス開幕！ 🎸</span>';
+      } else {
+        bar.style.display = 'none';
+      }
     }());
 
     /* ─────────────────────────────────
