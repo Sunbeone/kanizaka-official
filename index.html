@@ -450,6 +450,177 @@
     }
 
     /* ═══════════════════════════════════
+       LINEUP
+    ═══════════════════════════════════ */
+    .lineup {
+      display: grid;
+      grid-template-columns: 1fr;
+      min-height: 82vh;
+    }
+    @media (min-width: 768px) {
+      .lineup { grid-template-columns: 1fr 1fr; }
+    }
+
+    .lineup-text-col {
+      background: var(--paper);
+      display: flex;
+      align-items: flex-start;
+      order: 1;
+    }
+    .lineup-text-inner {
+      padding: 4.5rem 2rem 4.5rem;
+      width: 100%;
+      max-width: 100%;
+    }
+    @media (min-width: 768px) {
+      .lineup-text-inner {
+        padding: 5.5rem 3rem 5.5rem 3.5rem;
+      }
+    }
+    .lineup-text-inner p {
+      font-size: 0.92rem;
+      line-height: 2.15;
+      color: rgba(66,66,66,0.72);
+      margin-top: 1.4rem;
+      margin-bottom: 1.4rem;
+    }
+    .lineup-overview {
+      margin: 1.6rem 0 1.2rem;
+    }
+    .lineup-overview dt {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: rgba(66,66,66,0.42);
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .lineup-overview dd {
+      margin: 0;
+      line-height: 1.5;
+    }
+    .lineup-overview dd:first-of-type {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.4rem;
+    }
+    .lineup-overview dd:not(:first-of-type) {
+      font-size: 0.82rem;
+      color: rgba(66,66,66,0.58);
+    }
+    .lineup-credit {
+      font-size: 0.82rem;
+      color: rgba(66,66,66,0.52);
+      line-height: 1.9;
+    }
+    .lineup-credit a {
+      color: var(--forest);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .lineup-credit a:hover { color: var(--forest2); }
+
+    /* スケジュール */
+    .lineup-schedule {
+      margin: 1.6rem 0 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+    .lineup-day {
+      border-left: 2px solid var(--forest);
+      padding-left: 1rem;
+    }
+    .lineup-day-head {
+      display: flex;
+      align-items: baseline;
+      gap: 0.7rem;
+      margin-bottom: 0.5rem;
+    }
+    .lineup-day-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--forest);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .lineup-day-date small {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      margin-left: 0.2em;
+    }
+    .lineup-day-label {
+      font-size: 0.75rem;
+      color: rgba(66,66,66,0.52);
+      letter-spacing: 0.06em;
+    }
+    .lineup-acts-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0 0.5rem;
+      margin: 0.5rem 0 0.4rem;
+    }
+    .lineup-stage-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: var(--forest);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .lineup-acts {
+      list-style: none;
+      padding: 0; margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 0.7rem;
+    }
+    .lineup-acts li {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      letter-spacing: 0.02em;
+    }
+    .lineup-acts li:not(:last-child)::after {
+      content: ' /';
+      color: rgba(66,66,66,0.3);
+    }
+    .lineup-dj {
+      font-size: 0.72rem;
+      color: rgba(66,66,66,0.48);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ポスター右カラム — 全体表示・最大限に拡大 */
+    .lineup-photo-col {
+      background: var(--paper2);
+      display: flex;
+      align-items: stretch;
+      order: 2;
+    }
+    .lineup-photo-wrap {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+    .lineup-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+      border-radius: 4px;
+      box-shadow: 0 10px 48px rgba(0,0,0,0.14);
+    }
+
+    /* ═══════════════════════════════════
        EXTRA LIVE / 支援ライブ
     ═══════════════════════════════════ */
     .extra-live {
@@ -627,13 +798,20 @@
       color: var(--forest);
       text-decoration-color: var(--forest);
     }
+    .flyer-credit {
+      display: block;
+      font-size: 0.68rem;
+      color: rgba(66,66,66,0.38);
+      letter-spacing: 0.06em;
+      margin-top: 0.25rem;
+    }
 
     /* ── LIGHTBOX ── */
     .lb-overlay {
       position: fixed;
       inset: 0;
       z-index: 9000;
-      background: rgba(10,10,10,0.92);
+      background: rgba(10,10,10,0.72);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1397,6 +1575,103 @@
       </p>
     </div>
 
+    <!-- ═══ LINEUP ═══ -->
+    <section id="lineup" class="lineup">
+
+      <!-- Text (left) -->
+      <div class="lineup-text-col">
+        <div class="lineup-text-inner">
+          <span class="eyebrow reveal">2026 ARTIST LINEUP</span>
+          <h2 class="section-heading reveal d1">ラインナップ決定！</h2>
+
+          <p class="reveal d2">カニ坂ロックフェスティバル2026の本祭・前夜祭の出演者が決定しました。今年はスペシャルゲストとして"宙 &amp; Friends"が待望の帰還！その他の出演者も福生を代表する実力派バンドが勢揃いします。前夜祭に少年発電ホールディングスが初出演、DJブースではUnplugged Liveなど初の試みが盛りだくさん。もちろん飲食・雑貨など出店多数♪今回も盛大に開催しますのでお楽しみにどうぞ！</p>
+
+          <dl class="lineup-overview reveal d2">
+            <dt>開催概要</dt>
+            <dd>福生カニ坂ロックフェスティバル2026 Vol.41</dd>
+            <dd>会場：福生かに坂公園</dd>
+            <dd>主催：福生カニ坂ロックフェスティバル実行委員会</dd>
+            <dd>入場無料</dd>
+          </dl>
+
+          <div class="lineup-schedule reveal d3">
+
+            <div class="lineup-day">
+              <div class="lineup-day-head">
+                <span class="lineup-day-date">5/22 <small>FRI</small></span>
+                <span class="lineup-day-label">前夜祭 17:00〜21:00</span>
+              </div>
+              <div class="lineup-acts-row">
+                <span class="lineup-stage-label">MAIN STAGE：</span>
+                <ul class="lineup-acts">
+                  <li>HEARTBREAK ERIKO BAND</li>
+                  <li>フォースレヴォリューション</li>
+                  <li>the paws</li>
+                  <li>少年発電ホールディングス</li>
+                </ul>
+              </div>
+              <p class="lineup-dj">DJ : 火男 / Hirokick / SION</p>
+            </div>
+
+            <div class="lineup-day">
+              <div class="lineup-day-head">
+                <span class="lineup-day-date">5/23 <small>SAT</small></span>
+                <span class="lineup-day-label">本祭1日目 11:00〜21:00</span>
+              </div>
+              <div class="lineup-acts-row">
+                <span class="lineup-stage-label">MAIN STAGE：</span>
+                <ul class="lineup-acts">
+                  <li>straights</li>
+                  <li>LED</li>
+                  <li>Shorty&amp;BrotherStone</li>
+                  <li>SHIGAISEN</li>
+                  <li>UMURA</li>
+                  <li>LAYD☆BACK☆YARD</li>
+                  <li>カナリア時限爆弾</li>
+                  <li>TV HEAD</li>
+                  <li>殿様 Kinks</li>
+                </ul>
+              </div>
+              <p class="lineup-dj">DJ &amp; Unplugged : 佐伯憲陽 (Live) / 火男 (DJ&amp;MC) / siva-T / Lohra Wydna / DAICHI / Hirokick / Kaname</p>
+            </div>
+
+            <div class="lineup-day">
+              <div class="lineup-day-head">
+                <span class="lineup-day-date">5/24 <small>SUN</small></span>
+                <span class="lineup-day-label">本祭2日目 11:00〜21:00</span>
+              </div>
+              <div class="lineup-acts-row">
+                <span class="lineup-stage-label">MAIN STAGE：</span>
+                <ul class="lineup-acts">
+                  <li>宙 &amp; Friends</li>
+                  <li>cocoon exs</li>
+                  <li>石井明夫 CRAWLER</li>
+                  <li>北澤コイチーズ</li>
+                  <li>煩悩頭RS</li>
+                  <li>Ben's Pop Club</li>
+                  <li>招魂舎痴明</li>
+                  <li>いわのり〜ず</li>
+                  <li>SMOKER'S</li>
+                </ul>
+              </div>
+              <p class="lineup-dj">DJ &amp; Unplugged : サトウリュースケ (Live) / Atsushi K (Live) / Nao.OBA / DAICHI / siva-T / サモハンキンポー / Hirokick</p>
+            </div>
+
+          </div><!-- /lineup-schedule -->
+
+          <p class="lineup-credit reveal d4">ポスターの人物画は例年通り実行委員のJackがイラストを担当、ロゴマークは<a href="https://www.instagram.com/pwr_lab_tokyo/" target="_blank" rel="noopener noreferrer">PWR lab</a>さんが制作、構成／ディレクションをAtsushi Kが担当しました。</p>
+        </div>
+      </div>
+
+      <!-- Poster photo (right) -->
+      <div class="lineup-photo-col">
+        <div class="lineup-photo-wrap" id="lineupPhotoWrap">
+          <img src="images/kanizaka2026-main.jpg" alt="カニ坂ロックフェスティバル2026 メインビジュアル" loading="lazy">
+        </div>
+      </div>
+
+    </section><!-- /lineup -->
+
     <!-- ═══ EXTRA LIVE / 支援ライブ ═══ -->
     <section id="extra-live" class="extra-live">
 
@@ -1424,6 +1699,7 @@
             <div class="flyer-caption">
               <span class="flyer-date">3/29（日）</span>
               <span class="flyer-venue"><a href="https://www.phussa.net/" target="_blank" rel="noopener noreferrer">福生 Chicken Shack</a></span>
+              <span class="flyer-credit">Flyer designed by DAICHI</span>
             </div>
           </div>
 
@@ -1436,6 +1712,7 @@
             <div class="flyer-caption">
               <span class="flyer-date">4/11（土）</span>
               <span class="flyer-venue"><a href="https://uzu.jpn.org/" target="_blank" rel="noopener noreferrer">東福生 UZU</a></span>
+              <span class="flyer-credit">Flyer designed by MANE</span>
             </div>
           </div>
 
@@ -1448,6 +1725,7 @@
             <div class="flyer-caption">
               <span class="flyer-date">4/26（日）</span>
               <span class="flyer-venue"><a href="https://www.instagram.com/disco_club_eddies/" target="_blank" rel="noopener noreferrer">福生 DISCO EDDIE'S</a></span>
+              <span class="flyer-credit">Flyer designed by Atsushi K</span>
             </div>
           </div>
 
@@ -1472,7 +1750,7 @@
         <div class="extra-live-matome reveal">
           <img src="images/matome2026.jpg" alt="支援ライブ2026 まとめフライヤー"
                id="matomeFlyer" loading="lazy">
-          <p class="matome-caption">支援ライブ2026 総合フライヤー</p>
+          <p class="matome-caption">支援ライブ2026 総合フライヤー<span class="flyer-credit" style="display:inline;margin-left:0.8em;">Flyer designed by Atsushi K</span></p>
         </div>
 
         </div><!-- /flyer-layout -->
@@ -1945,9 +2223,9 @@
     /* ─────────────────────────────────
        3. PARALLAX
     ───────────────────────────────── */
-    var heroBg      = document.getElementById('heroBg');
-    var heroContent = document.getElementById('heroContent');
-    var msgWrap     = document.getElementById('msgPhotoWrap');
+    var heroBg        = document.getElementById('heroBg');
+    var heroContent   = document.getElementById('heroContent');
+    var msgWrap       = document.getElementById('msgPhotoWrap');
 
     function applyParallax() {
       var y = window.scrollY;
@@ -1971,6 +2249,7 @@
         var msgRel   = -msgRect.top;
         msgWrap.style.transform = 'translateY(' + (msgRel * 0.12) + 'px)';
       }
+
 
 
       rafPending = false;
@@ -2226,6 +2505,19 @@
         if (e.key === 'ArrowLeft')   loadSlide(cur - 1);
         if (e.key === 'ArrowRight')  loadSlide(cur + 1);
       });
+
+      // Touch swipe nav (スマホ)
+      var lbTouchX = null;
+      overlay.addEventListener('touchstart', function (e) {
+        lbTouchX = e.changedTouches[0].clientX;
+      }, { passive: true });
+      overlay.addEventListener('touchend', function (e) {
+        if (lbTouchX === null) return;
+        var dx = e.changedTouches[0].clientX - lbTouchX;
+        lbTouchX = null;
+        if (Math.abs(dx) < 40) return;
+        if (dx < 0) loadSlide(cur + 1); else loadSlide(cur - 1);
+      }, { passive: true });
     }());
 
     /* ─────────────────────────────────
