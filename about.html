@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="カニ坂ロックフェスティバルとは。1970年代から福生のカニ坂公園で続く、自由とDIY精神を掲げた入場無料の野外フェス。実行委員長メッセージ・フェスコンセプト・注意事項。">
+  <meta property="og:title"       content="About — 福生カニ坂ロックフェスティバル 2026">
+  <meta property="og:description" content="カニ坂ロックフェスティバルとは / 実行委員長より / 注意事項">
+  <meta property="og:image"       content="images/kani.jpg">
+  <title>About — 福生カニ坂ロックフェスティバル</title>
+
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="images/logo.png" type="image/png">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F64PRL9LPF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F64PRL9LPF');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══ TOKENS ═══ */
+    :root {
+      --paper:   #F5F5F0;
+      --paper2:  #EEEEE9;
+      --ink:     #424242;
+      --charcoal:#333333;
+      --forest:  #2E7D32;
+      --forest2: #388E3C;
+      --ease-expo: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ═══ RESET / BASE ═══ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans',
+                   -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    :lang(ja) { font-feature-settings: 'palt' 1; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--paper); }
+    ::-webkit-scrollbar-thumb { background: var(--forest); }
+
+    /* ═══ GRAIN ═══ */
+    #grain {
+      position: fixed; inset: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none; z-index: 9999;
+    }
+
+    /* ═══ SCROLL REVEAL ═══ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.9s var(--ease-expo), transform 0.9s var(--ease-expo);
+    }
+    .reveal.visible       { opacity: 1; transform: none; }
+    .reveal.d1.visible    { transition-delay: 0.12s; }
+    .reveal.d2.visible    { transition-delay: 0.24s; }
+    .reveal.d3.visible    { transition-delay: 0.36s; }
+
+    /* ═══ LAYOUT ═══ */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .eyebrow {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--forest);
+      margin-bottom: 1.2rem;
+    }
+    .section-heading {
+      font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+      font-weight: 300;
+      color: var(--charcoal);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    /* ═══ SMART HEADER ═══ */
+    .hdr {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: block;
+      background: rgba(0,0,0,0.28);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      transition: transform 0.42s var(--ease-expo), background-color 0.45s ease,
+                  backdrop-filter 0.45s ease, border-color 0.45s ease;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .hdr.scrolled {
+      background: rgba(245,245,240,0.94);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom-color: rgba(66,66,66,0.08);
+    }
+    .hdr.hidden { transform: translateY(-110px); }
+
+    .hdr-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      width: 100%;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .hdr-brand {
+      font-size: 0.75rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: white;
+      text-shadow: 0 1px 10px rgba(0,0,0,0.65);
+      transition: color 0.45s ease, text-shadow 0.45s ease;
+    }
+    .hdr.scrolled .hdr-brand { color: var(--charcoal); text-shadow: none; }
+
+    .hdr-nav { display: none; gap: 2.2rem; }
+    .hdr-nav a {
+      font-size: 0.75rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+      text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+      position: relative;
+    }
+    .hdr-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      height: 1px; width: 0;
+      background: var(--forest);
+      transition: width 0.32s var(--ease-expo);
+    }
+    .hdr-nav a:hover { color: var(--forest); }
+    .hdr-nav a:hover::after { width: 100%; }
+    .hdr.scrolled .hdr-nav a { color: rgba(66,66,66,0.65); text-shadow: none; }
+    .hdr.scrolled .hdr-nav a:hover { color: var(--forest); }
+
+    .hdr-ham {
+      background: none; border: none; cursor: pointer;
+      display: flex; flex-direction: column; gap: 6px; padding: 4px;
+      color: white;
+    }
+    .hdr.scrolled .hdr-ham { color: var(--charcoal); }
+    .hdr-ham span {
+      display: block; width: 22px; height: 1.5px;
+      background: currentColor;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      transform-origin: center;
+    }
+    .hdr-ham.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .hdr-ham.open span:nth-child(2) { opacity: 0; }
+    .hdr-ham.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    .hdr-mobile {
+      max-height: 0; overflow: hidden;
+      background: rgba(20,20,20,0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      transition: max-height 0.4s var(--ease-expo);
+    }
+    .hdr.scrolled .hdr-mobile {
+      background: rgba(245,245,240,0.98);
+      border-top-color: rgba(66,66,66,0.08);
+    }
+    .hdr-mobile.open { max-height: 260px; }
+    .hdr-mobile a {
+      display: block; padding: 1rem 1.5rem;
+      font-size: 0.82rem; letter-spacing: 0.24em; text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      transition: color 0.2s;
+    }
+    .hdr.scrolled .hdr-mobile a { color: rgba(66,66,66,0.72); border-bottom-color: rgba(66,66,66,0.07); }
+    .hdr-mobile a:hover { color: var(--forest); }
+
+    @media (min-width: 768px) {
+      .hdr-nav  { display: flex; }
+      .hdr-ham  { display: none !important; }
+      .hdr-mobile { display: none !important; }
+    }
+
+    /* ═══ PAGE HERO (About) ═══ */
+    .page-hero {
+      position: relative;
+      background: var(--charcoal);
+      padding: 9rem 1.5rem 5rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute;
+      top: -20%; left: 0; right: 0; bottom: -20%;
+      background-image: url('images/kani02.jpg');
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      opacity: 0.28;
+      z-index: 0;
+      will-change: transform;
+    }
+    .page-hero > *:not(.page-hero-bg) { position: relative; z-index: 1; }
+    .page-hero .eyebrow { color: rgba(255,255,255,0.42); justify-content: center; display: block; }
+    .page-hero h1 {
+      font-size: clamp(1.35rem, 5vw, 3.2rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.25;
+    }
+
+    /* ═══ MESSAGE ═══ */
+    .message {
+      display: grid;
+      grid-template-columns: 1fr;
+      min-height: 82vh;
+    }
+    @media (min-width: 768px) {
+      .message { grid-template-columns: 1fr 1fr; }
+    }
+
+    .msg-photo-col {
+      position: relative;
+      overflow: hidden;
+      min-height: 56vw;
+      order: 2;
+    }
+    @media (min-width: 768px) {
+      .msg-photo-col { min-height: 0; order: 1; }
+    }
+    .msg-photo-wrap {
+      position: absolute;
+      left: 0; right: 0;
+      top: -12%;
+      height: 124%;
+      will-change: transform;
+    }
+    .msg-photo-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+    .msg-photo-overlay {
+      position: absolute; inset: 0;
+      background: rgba(51,51,51,0.14);
+    }
+
+    .msg-text-col {
+      background: var(--paper);
+      display: flex;
+      align-items: center;
+      order: 1;
+    }
+    @media (min-width: 768px) { .msg-text-col { order: 2; } }
+    .msg-text-inner {
+      padding: 4.5rem 2rem 4.5rem;
+      width: 100%;
+      max-width: 520px;
+    }
+    @media (min-width: 768px) {
+      .msg-text-inner {
+        padding: 5.5rem 3.5rem 5.5rem clamp(2rem, 5vw, 5rem);
+      }
+    }
+    .msg-poem {
+      font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+      font-size: clamp(1.1rem, 2.4vw, 1.45rem);
+      line-height: 2.8;
+      color: var(--charcoal);
+      border-left: 1px solid var(--forest);
+      padding-left: 1.4rem;
+      margin: 0 0 1.2rem;
+    }
+    .msg-attr {
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      color: rgba(66,66,66,0.72);
+      font-family: 'Noto Serif JP', serif;
+      margin-bottom: 1.8rem;
+    }
+    .msg-body {
+      font-size: 0.96rem;
+      line-height: 2.28;
+      color: rgba(66,66,66,0.68);
+    }
+
+    @media (max-width: 767px) {
+      .msg-photo-col { min-height: 72vw; }
+      .msg-text-inner { padding: 3rem 1.2rem 3rem; }
+      .msg-poem { font-size: clamp(1rem, 4.5vw, 1.2rem); line-height: 2.5; }
+    }
+
+    /* ═══ CONCEPT / ABOUT ═══ */
+    .concept {
+      background: var(--paper);
+      padding: 5.5rem 0 6rem;
+    }
+    @media (max-width: 767px) {
+      .concept { padding: 3.5rem 0 3rem; }
+    }
+    .concept-header {
+      margin-bottom: 3.8rem;
+      max-width: 640px;
+    }
+    .concept-intro {
+      font-size: 0.96rem;
+      line-height: 2.3;
+      color: rgba(66,66,66,0.65);
+    }
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 640px) {
+      .concept-grid { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+    }
+    .concept-card { cursor: pointer; overflow: hidden; }
+    .concept-card-img-wrap {
+      position: relative;
+      overflow: hidden;
+      height: 260px;
+    }
+    .concept-card-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.75s var(--ease-expo), opacity 0.5s ease;
+    }
+    .concept-card:hover .concept-card-img { transform: scale(1.07); opacity: 0.9; }
+    .concept-card-tint {
+      position: absolute; inset: 0;
+      background: var(--forest);
+      opacity: 0;
+      transition: opacity 0.42s ease;
+    }
+    .concept-card:hover .concept-card-tint { opacity: 0.11; }
+    .concept-card-body { padding: 1.4rem 0.2rem 1.6rem; }
+    .concept-kw {
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--charcoal);
+      display: block;
+      margin-bottom: 0.55rem;
+      line-height: 1;
+      transition: color 0.32s var(--ease-expo), transform 0.32s var(--ease-expo);
+    }
+    .concept-card:hover .concept-kw { color: var(--forest); transform: translateX(5px); }
+    .concept-card-text {
+      font-size: 0.93rem;
+      line-height: 1.95;
+      color: rgba(66,66,66,0.65);
+    }
+    .concept-card-rule {
+      height: 1px;
+      background: var(--forest);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.38s var(--ease-expo);
+    }
+    .concept-card:hover .concept-card-rule { transform: scaleX(1); }
+
+    /* ═══ NOTES ═══ */
+    .notes {
+      background: var(--paper2);
+      padding: 5.5rem 0 6rem;
+    }
+    .notes-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.8rem;
+    }
+    @media (min-width: 768px) {
+      .notes-grid { grid-template-columns: repeat(2, 1fr); gap: 3.5rem; }
+    }
+    .notes-block-title {
+      display: block;
+      font-size: 0.74rem;
+      letter-spacing: 0.44em;
+      text-transform: uppercase;
+      color: var(--forest);
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(46,125,50,0.2);
+    }
+    .notes-block ul { list-style: none; padding: 0; }
+    .notes-block li {
+      font-size: 0.93rem;
+      line-height: 1.75;
+      color: rgba(66,66,66,0.72);
+      padding: 0.65rem 0 0.65rem 1.4rem;
+      border-bottom: 1px solid rgba(66,66,66,0.07);
+      position: relative;
+    }
+    .notes-block li:last-child { border-bottom: none; }
+    .notes-block li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--forest);
+      font-size: 0.75rem;
+      top: 0.82rem;
+    }
+    @media (max-width: 767px) {
+      .notes { padding: 4rem 0 4.5rem; }
+      .notes-grid { gap: 2.2rem; }
+      .notes-block li { font-size: 0.88rem; }
+    }
+
+    /* ═══ FOOTER ═══ */
+    .site-footer {
+      background: var(--forest);
+      padding: 1.8rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    @media (min-width: 640px) {
+      .site-footer { flex-direction: row; justify-content: space-between; }
+    }
+    .footer-copy {
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+    }
+
+    /* ═══ SNS BAR ═══ */
+    .sns-bar {
+      background: var(--charcoal);
+      padding: 2.4rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.4rem;
+    }
+    .sns-bar-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.32);
+    }
+    .sns-links {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+    }
+    .sns-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(255,255,255,0.55);
+      transition: color 0.25s ease, transform 0.25s ease;
+    }
+    .sns-link:hover { color: rgba(255,255,255,0.95); transform: translateY(-3px); }
+    .sns-link svg { width: 26px; height: 26px; fill: currentColor; }
+    .sns-link span {
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    /* ═══ MOBILE ═══ */
+    @media (max-width: 767px) {
+      .container { padding: 0 1rem; }
+      .hdr-inner { height: 52px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- GRAIN -->
+  <svg id="grain" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <filter id="gf">
+      <feTurbulence type="fractalNoise" baseFrequency="0.64" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#gf)" opacity="0.034"/>
+  </svg>
+
+  <!-- HEADER -->
+  <header class="hdr" id="hdr">
+    <div class="hdr-inner">
+      <a href="index.html" class="hdr-brand"></a>
+      <nav class="hdr-nav">
+        <a href="index.html">Home</a>
+        <a href="#concept">Concept</a>
+        <a href="#message">Message</a>
+        <a href="#notes">Notes</a>
+      </nav>
+      <button class="hdr-ham" id="hdrHam" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="hdr-mobile" id="hdrMobile">
+      <a href="index.html">Home</a>
+      <a href="#concept">Concept</a>
+      <a href="#message">Message</a>
+      <a href="#notes">Notes</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+      <div class="page-hero-bg"></div>
+      <span class="eyebrow">About</span>
+      <h1>福生カニ坂ロックフェスティバル</h1>
+    </div>
+
+    <!-- ═══ CONCEPT ═══ -->
+    <section id="concept" class="concept">
+      <div class="container">
+
+        <div class="concept-header">
+          <span class="eyebrow reveal">Concept</span>
+          <h2 class="section-heading reveal d1" style="font-size:clamp(1.4rem,3.2vw,2.2rem)">カニ坂ロックフェスティバルとは</h2>
+          <p class="concept-intro reveal d2">
+            1970年代から福生のカニ坂公園で続く、自由とDIY精神を掲げた入場無料の野外フェス。地元のローカルバンドから多彩な演者が集い、多摩川沿いの開放的な空間で共演します。個性豊かな飲食店や雑貨の出店も並び、地域と音楽が一体となる手作り感溢れる伝説的なイベントです。
+          </p>
+        </div>
+
+        <div class="concept-grid">
+
+          <div class="concept-card reveal">
+            <div class="concept-card-img-wrap">
+              <img src="images/concept-free.jpg" alt="" loading="lazy" class="concept-card-img">
+              <div class="concept-card-tint"></div>
+            </div>
+            <div class="concept-card-body">
+              <span class="concept-kw">FREE</span>
+              <p class="concept-card-text">入場無料。多摩川の風に吹かれ、誰もが「自由」に音を楽しめる場所。この圧倒的な解放感こそがカニ坂の誇り。</p>
+            </div>
+            <div class="concept-card-rule"></div>
+          </div>
+
+          <div class="concept-card reveal d1">
+            <div class="concept-card-img-wrap">
+              <img src="images/concept-diy.jpg" alt="" loading="lazy" class="concept-card-img">
+              <div class="concept-card-tint"></div>
+            </div>
+            <div class="concept-card-body">
+              <span class="concept-kw">DIY</span>
+              <p class="concept-card-text">竹取りから設営、運営までボランティアが担う手作りのフェス。自分たちの居場所は、自分たちの手で創り出す。</p>
+            </div>
+            <div class="concept-card-rule"></div>
+          </div>
+
+          <div class="concept-card reveal d2">
+            <div class="concept-card-img-wrap">
+              <img src="images/concept-local.jpg" alt="" loading="lazy" class="concept-card-img">
+              <div class="concept-card-tint"></div>
+            </div>
+            <div class="concept-card-body">
+              <span class="concept-kw">LOCAL</span>
+              <p class="concept-card-text">福生に根ざしたローカルバンドや個性豊かな出店が集結。地域コミュニティの熱こそがフェスティバルの原動力。</p>
+            </div>
+            <div class="concept-card-rule"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ MESSAGE ═══ -->
+    <section id="message" class="message">
+
+      <div class="msg-photo-col">
+        <div class="msg-photo-wrap" id="msgPhotoWrap">
+          <img src="images/slogan.jpg" alt="実行委員長 ニークラヤング" loading="lazy">
+          <div class="msg-photo-overlay"></div>
+        </div>
+      </div>
+
+      <div class="msg-text-col">
+        <div class="msg-text-inner">
+          <span class="eyebrow reveal">Message</span>
+          <h2 class="section-heading reveal d1" style="margin-bottom:1.6rem">実行委員長より</h2>
+          <blockquote class="msg-poem reveal d2">
+            晩夏から<br>
+            初夏に季移れし<br>
+            祭りなれど<br>
+            想い変わらぬ<br>
+            熱き心魂
+          </blockquote>
+          <p class="msg-attr reveal d2">— 実行委員長 ニークラヤング</p>
+          <p class="msg-body reveal d3">
+            これまでは8月の真夏に開催されるのが恒例でしたが、近年の記録的な酷暑やゲリラ豪雨といった気候の変化に対応し、2026年から5月開催という大きな決断をしました。50周年に向けてカニ坂ロックフェスは新しい時代へと足を踏み出します。
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ═══ NOTES ═══ -->
+    <section id="notes" class="notes">
+      <div class="container">
+        <span class="eyebrow reveal">Notes</span>
+        <h2 class="section-heading reveal d1" style="margin-bottom:2.8rem">注意事項</h2>
+
+        <div class="notes-grid">
+
+          <div class="notes-block reveal d1">
+            <span class="notes-block-title">会場について</span>
+            <ul>
+              <li>駐車場はありません。迷惑駐車はお断りいたします。</li>
+              <li>かに坂公園近隣道路およびS&Dフィールド福生（市営競技場）は駐車禁止です。</li>
+              <li>会場へは、徒歩 or 自転車でお越しください。（自転車は駐輪場に！）</li>
+              <li>会場では現金が使えません。日本円を「カニー券」に替えてお楽しみください。</li>
+              <li>テント等での宿泊は出来ません。</li>
+              <li>次の人の為にトイレは綺麗に使いましょう。</li>
+            </ul>
+          </div>
+
+          <div class="notes-block reveal d2">
+            <span class="notes-block-title">ゴミに関するお願い</span>
+            <ul>
+              <li>会場内にゴミ箱はありません。</li>
+              <li>飲食物の持ち込みは禁止ではありませんが、ゴミは各自で持ち帰って下さい。</li>
+              <li>帰宅途中でのポイ捨ても禁止です。特に自販機のゴミ箱とか絶対ダメ！</li>
+              <li>会場内で購入した飲食物の容器は、買ったお店で回収するので楽ですよ♪</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SNS BAR -->
+  <div class="sns-bar">
+    <p class="sns-bar-label">Follow Us</p>
+    <div class="sns-links">
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/KanizakaRockFestival" target="_blank" rel="noopener noreferrer" class="sns-link" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        <span>Facebook</span>
+      </a>
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/fussakanizaka/" target="_blank" rel="noopener noreferrer" class="sns-link" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" style="fill:var(--charcoal)"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="var(--charcoal)" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Instagram</span>
+      </a>
+      <!-- Threads -->
+      <a href="https://www.threads.com/@fussakanizaka" target="_blank" rel="noopener noreferrer" class="sns-link" aria-label="Threads">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.5 12.068c0-3.516.85-6.371 2.495-8.424C5.845 1.34 8.6.16 12.18.136h.014c2.733.02 5.036.738 6.845 2.135 1.712 1.32 2.89 3.188 3.503 5.552l-2.184.533c-.469-1.865-1.377-3.355-2.701-4.428-1.368-1.106-3.17-1.67-5.465-1.685-2.803.019-5.027.924-6.613 2.69C4.035 6.69 3.17 9.123 3.17 12.068c0 2.948.865 5.38 2.412 7.14 1.587 1.766 3.81 2.671 6.613 2.69 2.52.016 4.363-.669 5.474-2.037.992-1.22 1.538-3.064 1.538-5.261v-.33h-6.997v-2.02h9.23v2.02c0 2.866-.738 5.24-2.137 6.869C17.82 23.1 15.408 24 12.186 24Zm3.677-12.74c-.208-2.198-1.703-3.508-4.02-3.5-1.34.004-2.451.46-3.21 1.319-.758.857-1.13 2.084-1.104 3.645.026 1.553.432 2.768 1.208 3.611.758.823 1.866 1.241 3.293 1.241.027 0 .054 0 .08-.001 1.424-.018 2.487-.418 3.162-1.188.604-.69.943-1.69 1.008-2.974h-4.553v-2.032h5.136v-.121Z"/></svg>
+        <span>Threads</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <p class="footer-copy">© 2026 福生カニ坂ロックフェスティバル</p>
+  </footer>
+
+  <script>
+  (function () {
+    'use strict';
+    var rafPending = false;
+
+    /* ── SMART HEADER ── */
+    var hdr        = document.getElementById('hdr');
+    var lastScrollY = 0;
+    var hdrVisible  = true;
+
+    function updateHeader() {
+      var y = window.scrollY;
+      if (y > 60 && !hdr.classList.contains('scrolled')) hdr.classList.add('scrolled');
+      if (y <= 60 && hdr.classList.contains('scrolled'))  hdr.classList.remove('scrolled');
+      if (y > lastScrollY + 6 && hdrVisible && y > 120) {
+        hdr.classList.add('hidden'); hdrVisible = false;
+      } else if (y < lastScrollY - 6 && !hdrVisible) {
+        hdr.classList.remove('hidden'); hdrVisible = true;
+      }
+      lastScrollY = y;
+    }
+    window.addEventListener('scroll', function () {
+      if (!rafPending) { rafPending = true; requestAnimationFrame(function () { updateHeader(); rafPending = false; }); }
+    }, { passive: true });
+    updateHeader();
+
+    /* ── HAMBURGER ── */
+    var ham    = document.getElementById('hdrHam');
+    var mobile = document.getElementById('hdrMobile');
+    ham.addEventListener('click', function () {
+      var open = mobile.classList.toggle('open');
+      ham.classList.toggle('open', open);
+      ham.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    });
+    mobile.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        mobile.classList.remove('open');
+        ham.classList.remove('open');
+      });
+    });
+
+    /* ── SCROLL REVEAL ── */
+    var reveals = Array.from(document.querySelectorAll('.reveal'));
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(function (el) { io.observe(el); });
+
+    /* ── PARALLAX ── */
+    var msgWrap   = document.getElementById('msgPhotoWrap');
+    var heroBg    = document.querySelector('.page-hero-bg');
+    function applyParallax() {
+      var y = window.scrollY;
+      /* Hero background — stays behind at 0.4× scroll speed */
+      if (heroBg) {
+        heroBg.style.transform = 'translateY(' + (y * 0.4) + 'px)';
+      }
+      /* Message photo */
+      if (msgWrap) {
+        var r = msgWrap.parentElement.getBoundingClientRect();
+        msgWrap.style.transform = 'translateY(' + (-r.top * 0.12) + 'px)';
+      }
+    }
+    window.addEventListener('scroll', function () {
+      if (!rafPending) { rafPending = true; requestAnimationFrame(function () { applyParallax(); rafPending = false; }); }
+    }, { passive: true });
+
+  }());
+  </script>
+
+</body>
+</html>

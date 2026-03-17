@@ -1325,6 +1325,45 @@
     .access-block li { margin-bottom: 0.1rem; }
 
     /* ═══════════════════════════════════
+       SNS BAR
+    ═══════════════════════════════════ */
+    .sns-bar {
+      background: var(--charcoal);
+      padding: 2.4rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.4rem;
+    }
+    .sns-bar-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.32);
+    }
+    .sns-links {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+    }
+    .sns-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      transition: color 0.25s ease, transform 0.25s ease;
+    }
+    .sns-link:hover { color: rgba(255,255,255,0.95); transform: translateY(-3px); }
+    .sns-link svg { width: 26px; height: 26px; fill: currentColor; }
+    .sns-link span {
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    /* ═══════════════════════════════════
        FOOTER
     ═══════════════════════════════════ */
     .site-footer {
@@ -1353,21 +1392,6 @@
     }
     .footer-fb:hover { color: var(--forest2); }
 
-    /* ═══════════════════════════════════
-       FB FLOAT
-    ═══════════════════════════════════ */
-    .fb-float {
-      position: fixed; right: 1rem; bottom: 5rem; z-index: 150;
-    }
-    .fb-float a {
-      display: flex; align-items: center; justify-content: center;
-      width: 42px; height: 42px;
-      background: #1877f2; color: white;
-      border-radius: 50%; font-size: 1.1rem; font-weight: 900;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.28);
-      transition: transform 0.2s ease;
-    }
-    .fb-float a:hover { transform: scale(1.12); }
 
     /* ═══════════════════════════════════
        MOBILE RESPONSIVE
@@ -1438,8 +1462,6 @@
       .site-footer { padding: 1.4rem 1rem; gap: 0.6rem; }
       .footer-copy, .footer-fb { font-size: 0.65rem; letter-spacing: 0.2em; }
 
-      /* FB float */
-      .fb-float { right: 0.8rem; bottom: 4rem; }
     }
 
     /* ── 極小スマホ (〜400px) ── */
@@ -1478,11 +1500,10 @@
   <header class="hdr" id="hdr">
     <div class="hdr-inner">
       <nav class="hdr-nav">
+        <a href="about.html">About</a>
+        <a href="#lineup">Lineup</a>
         <a href="#extra-live">Ex Live</a>
-        <a href="#message">Message</a>
-        <a href="#concept">Concept</a>
         <a href="#gallery">Gallery</a>
-        <a href="#notes">Notes</a>
         <a href="#access">Access</a>
       </nav>
       <button class="hdr-ham" id="hdrHam" aria-label="メニューを開く">
@@ -1490,11 +1511,10 @@
       </button>
     </div>
     <nav class="hdr-mobile" id="hdrMobile">
+      <a href="about.html">About</a>
+      <a href="#lineup">Lineup</a>
       <a href="#extra-live">Ex Live</a>
-      <a href="#message">Message</a>
-      <a href="#concept">Concept</a>
       <a href="#gallery">Gallery</a>
-      <a href="#notes">Notes</a>
       <a href="#access">Access</a>
     </nav>
   </header>
@@ -1591,6 +1611,7 @@
             <dd>福生カニ坂ロックフェスティバル2026 Vol.41</dd>
             <dd>会場：福生かに坂公園</dd>
             <dd>主催：福生カニ坂ロックフェスティバル実行委員会</dd>
+            <dd>後援：福生市</dd>
             <dd>入場無料</dd>
           </dl>
 
@@ -1784,97 +1805,6 @@
         </div>
       </div>
     </div>
-
-    <!-- ═══ MESSAGE ═══ -->
-    <section id="message" class="message">
-
-      <!-- Photo (left on desktop) -->
-      <div class="msg-photo-col">
-        <div class="msg-photo-wrap" id="msgPhotoWrap">
-          <img src="images/slogan.jpg" alt="実行委員長 ニークラヤング" loading="lazy">
-          <div class="msg-photo-overlay"></div>
-        </div>
-      </div>
-
-      <!-- Text (right on desktop) -->
-      <div class="msg-text-col">
-        <div class="msg-text-inner">
-          <span class="eyebrow reveal">Message</span>
-          <h2 class="section-heading reveal d1" style="margin-bottom:1.6rem">実行委員長より</h2>
-          <blockquote class="msg-poem reveal d2">
-            晩夏から<br>
-            初夏に季移れし<br>
-            祭りなれど<br>
-            想い変わらぬ<br>
-            熱き心魂
-          </blockquote>
-          <p class="msg-attr reveal d2">— 実行委員長 ニークラヤング</p>
-          <p class="msg-body reveal d3">
-            これまでは8月の真夏に開催されるのが恒例でしたが、近年の記録的な酷暑やゲリラ豪雨といった気候の変化に対応し、2026年から5月開催という大きな決断をしました。50周年に向けてカニ坂ロックフェスは新しい時代へと足を踏み出します。
-          </p>
-        </div>
-      </div>
-
-    </section><!-- /message -->
-
-
-    <!-- ═══ CONCEPT ═══ -->
-    <section id="concept" class="concept">
-      <div class="container">
-
-        <div class="concept-header">
-          <span class="eyebrow reveal">Concept</span>
-          <h2 class="section-heading reveal d1" style="font-size:clamp(1.4rem,3.2vw,2.2rem)">カニ坂ロックフェスティバルとは</h2>
-          <p class="concept-intro reveal d2">
-            1970年代から福生のカニ坂公園で続く、自由とDIY精神を掲げた入場無料の野外フェス。地元のローカルバンドから多彩な演者が集い、多摩川沿いの開放的な空間で共演します。個性豊かな飲食店や雑貨の出店も並び、地域と音楽が一体となる手作り感溢れる伝説的なイベントです。
-          </p>
-        </div>
-
-        <div class="concept-grid">
-
-          <!-- FREE -->
-          <div class="concept-card reveal">
-            <div class="concept-card-img-wrap">
-              <img src="images/concept-free.jpg" alt="" loading="lazy" class="concept-card-img">
-              <div class="concept-card-tint"></div>
-            </div>
-            <div class="concept-card-body">
-              <span class="concept-kw">FREE</span>
-              <p class="concept-card-text">入場無料。多摩川の風に吹かれ、誰もが「自由」に音を楽しめる場所。この圧倒的な解放感こそがカニ坂の誇り。</p>
-            </div>
-            <div class="concept-card-rule"></div>
-          </div>
-
-          <!-- DIY -->
-          <div class="concept-card reveal d1">
-            <div class="concept-card-img-wrap">
-              <img src="images/concept-diy.jpg" alt="" loading="lazy" class="concept-card-img">
-              <div class="concept-card-tint"></div>
-            </div>
-            <div class="concept-card-body">
-              <span class="concept-kw">DIY</span>
-              <p class="concept-card-text">竹取りから設営、運営までボランティアが担う手作りのフェス。自分たちの居場所は、自分たちの手で創り出す。</p>
-            </div>
-            <div class="concept-card-rule"></div>
-          </div>
-
-          <!-- LOCAL -->
-          <div class="concept-card reveal d2">
-            <div class="concept-card-img-wrap">
-              <img src="images/concept-local.jpg" alt="" loading="lazy" class="concept-card-img">
-              <div class="concept-card-tint"></div>
-            </div>
-            <div class="concept-card-body">
-              <span class="concept-kw">LOCAL</span>
-              <p class="concept-card-text">福生に根ざしたローカルバンドや個性豊かな出店が集結。地域コミュニティの熱こそがフェスティバルの原動力。</p>
-            </div>
-            <div class="concept-card-rule"></div>
-          </div>
-
-        </div>
-      </div>
-    </section><!-- /concept -->
-
 
     <!-- ═══ GALLERY ═══ -->
     <section id="gallery" class="gallery">
@@ -2089,40 +2019,6 @@
       </div><!-- /gallery-grid -->
     </section><!-- /gallery -->
 
-    <!-- ═══ NOTES / 注意事項 ═══ -->
-    <section id="notes" class="notes">
-      <div class="container">
-        <span class="eyebrow reveal">Notes</span>
-        <h2 class="section-heading reveal d1" style="margin-bottom:2.8rem">注意事項</h2>
-
-        <div class="notes-grid">
-
-          <div class="notes-block reveal d1">
-            <span class="notes-block-title">会場について</span>
-            <ul>
-              <li>駐車場はありません。迷惑駐車はお断りいたします。</li>
-              <li>かに坂公園近隣道路およびS&Dフィールド福生（市営競技場）は駐車禁止です。</li>
-              <li>会場へは、徒歩 or 自転車でお越しください。（自転車は駐輪場に！）</li>
-              <li>会場では現金が使えません。日本円を「カニー券」に替えてお楽しみください。</li>
-              <li>テント等での宿泊は出来ません。</li>
-              <li>次の人の為にトイレは綺麗に使いましょう。</li>
-            </ul>
-          </div>
-
-          <div class="notes-block reveal d2">
-            <span class="notes-block-title">ゴミに関するお願い</span>
-            <ul>
-              <li>会場内にゴミ箱はありません。</li>
-              <li>飲食物の持ち込みは禁止ではありませんが、ゴミは各自で持ち帰って下さい。</li>
-              <li>帰宅途中でのポイ捨ても禁止です。特に自販機のゴミ箱とか絶対ダメ！</li>
-              <li>会場内で購入した飲食物の容器は、買ったお店で回収するので楽ですよ♪</li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-    </section><!-- /notes -->
-
     <!-- ═══ ACCESS ═══ -->
     <section id="access" class="access">
       <div class="container">
@@ -2155,17 +2051,32 @@
 
   </main>
 
+  <!-- SNS BAR -->
+  <div class="sns-bar">
+    <p class="sns-bar-label">Follow Us</p>
+    <div class="sns-links">
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/KanizakaRockFestival" target="_blank" rel="noopener noreferrer" class="sns-link" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        <span>Facebook</span>
+      </a>
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/fussakanizaka/" target="_blank" rel="noopener noreferrer" class="sns-link" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" style="fill:var(--charcoal)"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="var(--charcoal)" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Instagram</span>
+      </a>
+      <!-- Threads -->
+      <a href="https://www.threads.com/@fussakanizaka" target="_blank" rel="noopener noreferrer" class="sns-link" aria-label="Threads">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.5 12.068c0-3.516.85-6.371 2.495-8.424C5.845 1.34 8.6.16 12.18.136h.014c2.733.02 5.036.738 6.845 2.135 1.712 1.32 2.89 3.188 3.503 5.552l-2.184.533c-.469-1.865-1.377-3.355-2.701-4.428-1.368-1.106-3.17-1.67-5.465-1.685-2.803.019-5.027.924-6.613 2.69C4.035 6.69 3.17 9.123 3.17 12.068c0 2.948.865 5.38 2.412 7.14 1.587 1.766 3.81 2.671 6.613 2.69 2.52.016 4.363-.669 5.474-2.037.992-1.22 1.538-3.064 1.538-5.261v-.33h-6.997v-2.02h9.23v2.02c0 2.866-.738 5.24-2.137 6.869C17.82 23.1 15.408 24 12.186 24Zm3.677-12.74c-.208-2.198-1.703-3.508-4.02-3.5-1.34.004-2.451.46-3.21 1.319-.758.857-1.13 2.084-1.104 3.645.026 1.553.432 2.768 1.208 3.611.758.823 1.866 1.241 3.293 1.241.027 0 .054 0 .08-.001 1.424-.018 2.487-.418 3.162-1.188.604-.69.943-1.69 1.008-2.974h-4.553v-2.032h5.136v-.121Z"/></svg>
+        <span>Threads</span>
+      </a>
+    </div>
+  </div>
+
   <!-- ═══ FOOTER ═══ -->
   <footer class="site-footer" role="contentinfo">
     <p class="footer-copy">© 2026 福生カニ坂ロックフェスティバル</p>
   </footer>
-
-  <!-- FB Float -->
-  <div class="fb-float">
-    <a href="https://www.facebook.com/KanizakaRockFestival"
-       target="_blank" rel="noopener noreferrer"
-       aria-label="Facebook ページを開く">f</a>
-  </div>
 
   <!-- ═══════════════════════════════════
        SCRIPTS — zero external dependencies
@@ -2225,8 +2136,6 @@
     ───────────────────────────────── */
     var heroBg        = document.getElementById('heroBg');
     var heroContent   = document.getElementById('heroContent');
-    var msgWrap       = document.getElementById('msgPhotoWrap');
-
     function applyParallax() {
       var y = window.scrollY;
 
@@ -2242,15 +2151,6 @@
         heroContent.style.transform = 'translateY(' + dy + 'px)';
         heroContent.style.opacity   = opacity;
       }
-
-      /* Message photo — independent slow scroll */
-      if (msgWrap) {
-        var msgRect  = msgWrap.parentElement.getBoundingClientRect();
-        var msgRel   = -msgRect.top;
-        msgWrap.style.transform = 'translateY(' + (msgRel * 0.12) + 'px)';
-      }
-
-
 
       rafPending = false;
     }
