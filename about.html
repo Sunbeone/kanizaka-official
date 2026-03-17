@@ -217,14 +217,13 @@
     }
     .page-hero-bg {
       position: absolute;
-      top: -20%; left: 0; right: 0; bottom: -20%;
+      top: 0; left: 0; right: 0; bottom: 0;
       background-image: url('images/kani02.jpg');
-      background-position: center;
+      background-position: center 50%;
       background-size: cover;
       background-repeat: no-repeat;
       opacity: 0.28;
       z-index: 0;
-      will-change: transform;
     }
     .page-hero > *:not(.page-hero-bg) { position: relative; z-index: 1; }
     .page-hero .eyebrow { color: rgba(255,255,255,0.42); justify-content: center; display: block; }
@@ -742,9 +741,9 @@
     var heroBg    = document.querySelector('.page-hero-bg');
     function applyParallax() {
       var y = window.scrollY;
-      /* Hero background — stays behind at 0.4× scroll speed */
+      /* Hero background — background-position をずらしてパララックス */
       if (heroBg) {
-        heroBg.style.transform = 'translateY(' + (y * 0.4) + 'px)';
+        heroBg.style.backgroundPositionY = 'calc(50% + ' + (y * 0.3) + 'px)';
       }
       /* Message photo */
       if (msgWrap) {

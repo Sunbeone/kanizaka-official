@@ -218,7 +218,7 @@
       background: rgba(245,245,240,0.98);
       border-top-color: rgba(66,66,66,0.08);
     }
-    .hdr-mobile.open { max-height: 220px; }
+    .hdr-mobile.open { max-height: 320px; }
     .hdr-mobile a {
       display: block; padding: 1rem 1.5rem;
       font-size: 0.82rem; letter-spacing: 0.24em; text-transform: uppercase;
@@ -2138,6 +2138,14 @@
     var heroContent   = document.getElementById('heroContent');
     function applyParallax() {
       var y = window.scrollY;
+
+      /* モバイルではパララックス無効 */
+      if (window.innerWidth < 768) {
+        if (heroBg)      heroBg.style.transform      = '';
+        if (heroContent) { heroContent.style.transform = ''; heroContent.style.opacity = ''; }
+        rafPending = false;
+        return;
+      }
 
       /* Hero background — moves at 0.28× scroll speed */
       if (heroBg) {
