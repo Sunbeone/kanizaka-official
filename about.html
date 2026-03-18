@@ -707,11 +707,6 @@
       }
       lastScrollY = y;
     }
-    window.addEventListener('scroll', function () {
-      if (!rafPending) { rafPending = true; requestAnimationFrame(function () { updateHeader(); rafPending = false; }); }
-    }, { passive: true });
-    updateHeader();
-
     /* ── HAMBURGER ── */
     var ham    = document.getElementById('hdrHam');
     var mobile = document.getElementById('hdrMobile');
@@ -751,9 +746,19 @@
         msgWrap.style.transform = 'translateY(' + (-r.top * 0.12) + 'px)';
       }
     }
+    /* スクロールリスナーを1本化して rafPending を共有 */
     window.addEventListener('scroll', function () {
-      if (!rafPending) { rafPending = true; requestAnimationFrame(function () { applyParallax(); rafPending = false; }); }
+      if (!rafPending) {
+        rafPending = true;
+        requestAnimationFrame(function () {
+          updateHeader();
+          applyParallax();
+          rafPending = false;
+        });
+      }
     }, { passive: true });
+    updateHeader();
+    applyParallax();
 
   }());
   </script>

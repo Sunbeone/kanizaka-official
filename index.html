@@ -519,6 +519,37 @@
       text-decoration: underline;
       text-underline-offset: 3px;
     }
+
+    /* ── About バナー ── */
+    .lineup-about-banner {
+      grid-column: 1 / -1;
+      background: var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem 3rem;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .lineup-about-banner:hover { background: #2a2a2a; }
+    .lineup-about-banner-text {
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.88);
+    }
+    .lineup-about-banner-arrow {
+      font-size: 1.4rem;
+      color: rgba(255,255,255,0.5);
+      transition: transform 0.3s var(--ease-expo), color 0.3s ease;
+    }
+    .lineup-about-banner:hover .lineup-about-banner-arrow {
+      transform: translateX(6px);
+      color: rgba(255,255,255,0.88);
+    }
+    @media (max-width: 767px) {
+      .lineup-about-banner { padding: 1.6rem 1.4rem; }
+    }
     .lineup-credit a:hover { color: var(--forest2); }
 
     /* スケジュール */
@@ -1690,6 +1721,12 @@
           <img src="images/kanizaka2026-main.jpg" alt="カニ坂ロックフェスティバル2026 メインビジュアル" loading="lazy">
         </div>
       </div>
+
+      <!-- About バナー -->
+      <a href="about.html" class="lineup-about-banner reveal">
+        <span class="lineup-about-banner-text">福生カニ坂ロックフェスティバルとは</span>
+        <span class="lineup-about-banner-arrow">→</span>
+      </a>
 
     </section><!-- /lineup -->
 
