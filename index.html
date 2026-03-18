@@ -301,14 +301,14 @@
     .hero-slide img.pan-left {
       animation: heroPanLeft 6s ease-in-out forwards;
     }
-
+    .hero-slide img.hero-img-hero00 { object-position: 5% center; }
     /* Slider dots */
     .hero-dots {
       position: absolute;
       bottom: 4.8rem;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 4;
+      z-index: 5;
       display: flex;
       gap: 7px;
       animation: fadeUp 1.0s 1.6s var(--ease-expo) both;
@@ -319,14 +319,21 @@
       background: rgba(255,255,255,0.28);
       transition: background 0.4s ease, transform 0.4s ease;
       cursor: pointer;
+      /* ヒット領域を広げる */
+      padding: 7px;
+      margin: -7px;
+      background-clip: content-box;
+      box-sizing: content-box;
     }
     .hero-dot.active {
       background: rgba(255,255,255,0.88);
+      background-clip: content-box;
       transform: scale(1.3);
     }
     /* Gradient vignette */
     .hero-overlay {
       position: absolute; inset: 0;
+      pointer-events: none;
       background: linear-gradient(
         180deg,
         rgba(0,0,0,0.18) 0%,
@@ -458,7 +465,7 @@
       min-height: 82vh;
     }
     @media (min-width: 768px) {
-      .lineup { grid-template-columns: 1fr 1fr; }
+      .lineup { grid-template-columns: 1fr auto; }
     }
 
     .lineup-text-col {
@@ -509,6 +516,13 @@
       font-size: 0.82rem;
       color: rgba(66,66,66,0.58);
     }
+    .lineup-overview dd.free {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--forest);
+      letter-spacing: 0.08em;
+      margin-top: 0.5rem;
+    }
     .lineup-credit {
       font-size: 0.82rem;
       color: rgba(66,66,66,0.52);
@@ -520,37 +534,32 @@
       text-underline-offset: 3px;
     }
 
-    /* ── About バナー ── */
-    .lineup-about-banner {
-      grid-column: 1 / -1;
-      background: var(--charcoal);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 2rem 3rem;
-      text-decoration: none;
-      transition: background 0.3s ease;
-    }
-    .lineup-about-banner:hover { background: #2a2a2a; }
-    .lineup-about-banner-text {
-      font-size: clamp(0.95rem, 2vw, 1.15rem);
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.88);
-    }
-    .lineup-about-banner-arrow {
-      font-size: 1.4rem;
-      color: rgba(255,255,255,0.5);
-      transition: transform 0.3s var(--ease-expo), color 0.3s ease;
-    }
-    .lineup-about-banner:hover .lineup-about-banner-arrow {
-      transform: translateX(6px);
-      color: rgba(255,255,255,0.88);
-    }
-    @media (max-width: 767px) {
-      .lineup-about-banner { padding: 1.6rem 1.4rem; }
-    }
     .lineup-credit a:hover { color: var(--forest2); }
+    .lineup-about-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.4rem;
+      padding: 0.7rem 1.6rem;
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.88);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+    .lineup-about-btn:hover {
+      background: var(--forest);
+      transform: translateY(-2px);
+    }
+    .lineup-about-btn .btn-arrow {
+      font-size: 1rem;
+      transition: transform 0.25s var(--ease-expo);
+    }
+    .lineup-about-btn:hover .btn-arrow { transform: translateX(4px); }
 
     /* スケジュール */
     .lineup-schedule {
@@ -627,7 +636,7 @@
       margin: 0;
     }
 
-    /* ポスター右カラム — 全体表示・最大限に拡大 */
+    /* ポスター右カラム — 画像サイズにぴったり合わせる */
     .lineup-photo-col {
       background: var(--paper2);
       display: flex;
@@ -641,14 +650,30 @@
       justify-content: center;
       padding: 0;
     }
+    @media (min-width: 768px) {
+      .lineup-photo-wrap {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        width: auto;
+        align-self: flex-start;
+      }
+    }
     .lineup-photo-wrap img {
       width: 100%;
-      height: 100%;
-      max-height: 100%;
+      height: auto;
+      max-width: 100%;
       object-fit: contain;
       display: block;
       border-radius: 4px;
       box-shadow: 0 10px 48px rgba(0,0,0,0.14);
+    }
+    @media (min-width: 768px) {
+      .lineup-photo-wrap img {
+        height: 100%;
+        width: auto;
+        max-width: none;
+      }
     }
 
     /* ═══════════════════════════════════
@@ -1563,17 +1588,22 @@
           <video src="images/stage.mp4" muted playsinline autoplay preload="auto" id="hslide-v0"></video>
         </div>
 
-        <!-- 1: hero1.jpg -->
+        <!-- 1: hero00.jpg -->
+        <div class="hero-slide" data-type="image">
+          <img src="images/hero00.jpg" alt="" loading="lazy" class="hero-img-hero00">
+        </div>
+
+        <!-- 2: hero1.jpg -->
         <div class="hero-slide" data-type="image">
           <img src="images/hero1.jpg" alt="" loading="lazy">
         </div>
 
-        <!-- 2: cocoon.mp4 -->
+        <!-- 3: cocoon.mp4 -->
         <div class="hero-slide" data-type="video">
           <video src="images/cocoon.mp4" muted playsinline autoplay preload="auto" id="hslide-v2"></video>
         </div>
 
-        <!-- 3: hero3.jpg -->
+        <!-- 4: hero3.jpg -->
         <div class="hero-slide" data-type="image">
           <img src="images/hero3.jpg" alt="" loading="lazy">
         </div>
@@ -1587,6 +1617,7 @@
         <div class="hero-dot"        data-idx="1"></div>
         <div class="hero-dot"        data-idx="2"></div>
         <div class="hero-dot"        data-idx="3"></div>
+        <div class="hero-dot"        data-idx="4"></div>
       </div>
 
       <!-- Centre content -->
@@ -1640,10 +1671,10 @@
           <dl class="lineup-overview reveal d2">
             <dt>開催概要</dt>
             <dd>福生カニ坂ロックフェスティバル2026 Vol.41</dd>
-            <dd>会場：福生かに坂公園</dd>
+            <dd>会場：<a href="https://www.google.com/maps/search/?api=1&query=東京都福生市福生１１８５－１５+福生かに坂公園" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">福生かに坂公園</a></dd>
             <dd>主催：福生カニ坂ロックフェスティバル実行委員会</dd>
             <dd>後援：福生市</dd>
-            <dd>入場無料</dd>
+            <dd class="free">入場無料</dd>
           </dl>
 
           <div class="lineup-schedule reveal d3">
@@ -1712,6 +1743,10 @@
           </div><!-- /lineup-schedule -->
 
           <p class="lineup-credit reveal d4">ポスターの人物画は例年通り実行委員のJackがイラストを担当、ロゴマークは<a href="https://www.instagram.com/pwr_lab_tokyo/" target="_blank" rel="noopener noreferrer">PWR lab</a>さんが制作、構成／ディレクションをAtsushi Kが担当しました。</p>
+          <a href="about.html" class="lineup-about-btn reveal d5">
+            福生カニ坂ロックフェスティバルとは
+            <span class="btn-arrow">→</span>
+          </a>
         </div>
       </div>
 
@@ -1721,12 +1756,6 @@
           <img src="images/kanizaka2026-main.jpg" alt="カニ坂ロックフェスティバル2026 メインビジュアル" loading="lazy">
         </div>
       </div>
-
-      <!-- About バナー -->
-      <a href="about.html" class="lineup-about-banner reveal">
-        <span class="lineup-about-banner-text">福生カニ坂ロックフェスティバルとは</span>
-        <span class="lineup-about-banner-arrow">→</span>
-      </a>
 
     </section><!-- /lineup -->
 
@@ -2339,6 +2368,22 @@
           goTo(parseInt(dot.dataset.idx, 10));
         });
       });
+
+      // Hero スワイプ（スマホ）
+      var heroTouchX = null;
+      var heroSection = document.getElementById('top');
+      heroSection.addEventListener('touchstart', function (e) {
+        heroTouchX = e.changedTouches[0].clientX;
+      }, { passive: true });
+      heroSection.addEventListener('touchend', function (e) {
+        if (heroTouchX === null) return;
+        var dx = e.changedTouches[0].clientX - heroTouchX;
+        heroTouchX = null;
+        if (Math.abs(dx) < 40) return;
+        if (dx < 0) { goTo((cur + 1) % total); }
+        else        { goTo((cur - 1 + total) % total); }
+      }, { passive: true });
+
     }());
 
 
