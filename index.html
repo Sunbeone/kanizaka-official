@@ -301,7 +301,7 @@
     .hero-slide img.pan-left {
       animation: heroPanLeft 6s ease-in-out forwards;
     }
-    .hero-slide img.hero-img-hero00 { object-position: 5% center; }
+    .hero-slide img.hero-img-hero00 { object-position: 10% center; }
     /* Slider dots */
     .hero-dots {
       position: absolute;
@@ -481,7 +481,7 @@
     }
     @media (min-width: 768px) {
       .lineup-text-inner {
-        padding: 5.5rem 3rem 5.5rem 3.5rem;
+        padding: 5.5rem 6rem 5.5rem 6rem;
       }
     }
     .lineup-text-inner p {
@@ -1381,6 +1381,40 @@
     .access-block li { margin-bottom: 0.1rem; }
 
     /* ═══════════════════════════════════
+       ABOUT LINK BUTTON
+    ═══════════════════════════════════ */
+    .about-link-wrap {
+      background: var(--paper2);
+      padding: 3rem 1.5rem;
+      display: flex;
+      justify-content: center;
+      border-top: 1px solid rgba(66,66,66,0.08);
+    }
+    .about-link-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2.2rem;
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.88);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      border-radius: 2px;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+    .about-link-bar:hover {
+      background: var(--forest);
+      transform: translateY(-2px);
+    }
+    .about-link-bar .bar-arrow {
+      display: inline-block;
+      transition: transform 0.25s var(--ease-expo);
+    }
+    .about-link-bar:hover .bar-arrow { transform: translateX(5px); }
+
+    /* ═══════════════════════════════════
        SNS BAR
     ═══════════════════════════════════ */
     .sns-bar {
@@ -2116,6 +2150,13 @@
     </section><!-- /access -->
 
   </main>
+
+  <!-- ABOUT LINK BUTTON -->
+  <div class="about-link-wrap">
+    <a href="about.html" class="about-link-bar">
+      福生カニ坂ロックフェスティバルとは<span class="bar-arrow">→</span>
+    </a>
+  </div>
 
   <!-- SNS BAR -->
   <div class="sns-bar">
