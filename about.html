@@ -387,6 +387,85 @@
     }
     .concept-card:hover .concept-card-rule { transform: scaleX(1); }
 
+    /* ═══ CURRENCY ═══ */
+    .currency {
+      background: var(--paper);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 767px) {
+      .currency { grid-template-columns: 1fr; }
+    }
+    .currency-text-col {
+      background: var(--paper);
+    }
+    .currency-text-inner {
+      padding: 4.5rem 2rem 4.5rem;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .currency-text-inner { padding: 5.5rem 3.5rem 5.5rem; }
+    }
+    .currency-text-inner p {
+      font-size: 0.92rem;
+      line-height: 2.15;
+      color: rgba(66,66,66,0.72);
+      margin-top: 1.2rem;
+    }
+    .currency-text-inner ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 1.4rem;
+    }
+    .currency-text-inner ul li {
+      font-size: 0.85rem;
+      line-height: 1.8;
+      color: rgba(66,66,66,0.58);
+      padding: 0.4rem 0 0.4rem 1.2rem;
+      border-bottom: 1px solid rgba(66,66,66,0.07);
+      position: relative;
+    }
+    .currency-text-inner ul li:last-child { border-bottom: none; }
+    .currency-text-inner ul li::before {
+      content: '※';
+      position: absolute;
+      left: 0;
+      color: var(--forest);
+      font-size: 0.75rem;
+    }
+    .currency-photo-col {
+      background: var(--paper2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .currency-photo-wrap {
+      width: 100%;
+      padding: 2.5rem 2rem;
+    }
+    @media (min-width: 768px) {
+      .currency-photo-wrap { padding: 4rem 3rem; }
+    }
+    .currency-photo-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+    }
+    .currency-rate {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1.2rem;
+      background: var(--forest);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      border-radius: 2px;
+    }
+
     /* ═══ NOTES ═══ */
     .notes {
       background: var(--paper2);
@@ -514,8 +593,9 @@
       <a href="index.html" class="hdr-brand"></a>
       <nav class="hdr-nav">
         <a href="index.html">Home</a>
-        <a href="#concept">Concept</a>
         <a href="#message">Message</a>
+        <a href="#concept">Concept</a>
+        <a href="#currency">Currency</a>
         <a href="#notes">Notes</a>
       </nav>
       <button class="hdr-ham" id="hdrHam" aria-label="メニューを開く">
@@ -524,8 +604,9 @@
     </div>
     <nav class="hdr-mobile" id="hdrMobile">
       <a href="index.html">Home</a>
-      <a href="#concept">Concept</a>
       <a href="#message">Message</a>
+      <a href="#concept">Concept</a>
+      <a href="#currency">Currency</a>
       <a href="#notes">Notes</a>
     </nav>
   </header>
@@ -538,6 +619,36 @@
       <span class="eyebrow">About</span>
       <h1>福生カニ坂ロックフェスティバル</h1>
     </div>
+
+    <!-- ═══ MESSAGE ═══ -->
+    <section id="message" class="message">
+
+      <div class="msg-photo-col">
+        <div class="msg-photo-wrap" id="msgPhotoWrap">
+          <img src="images/slogan.jpg" alt="実行委員長 ニークラヤング" loading="lazy">
+          <div class="msg-photo-overlay"></div>
+        </div>
+      </div>
+
+      <div class="msg-text-col">
+        <div class="msg-text-inner">
+          <span class="eyebrow reveal">Message</span>
+          <h2 class="section-heading reveal d1" style="margin-bottom:1.6rem">実行委員長より</h2>
+          <blockquote class="msg-poem reveal d2">
+            晩夏から<br>
+            初夏に季移れし<br>
+            祭りなれど<br>
+            想い変わらぬ<br>
+            熱き心魂
+          </blockquote>
+          <p class="msg-attr reveal d2">— 実行委員長 ニークラヤング</p>
+          <p class="msg-body reveal d3">
+            これまでは8月の真夏に開催されるのが恒例でしたが、近年の記録的な酷暑やゲリラ豪雨といった気候の変化に対応し、2026年から5月開催という大きな決断をしました。50周年に向けてカニ坂ロックフェスは新しい時代へと足を踏み出します。
+          </p>
+        </div>
+      </div>
+
+    </section>
 
     <!-- ═══ CONCEPT ═══ -->
     <section id="concept" class="concept">
@@ -593,31 +704,28 @@
       </div>
     </section>
 
-    <!-- ═══ MESSAGE ═══ -->
-    <section id="message" class="message">
+    <!-- ═══ CURRENCY ═══ -->
+    <section id="currency" class="currency">
 
-      <div class="msg-photo-col">
-        <div class="msg-photo-wrap" id="msgPhotoWrap">
-          <img src="images/slogan.jpg" alt="実行委員長 ニークラヤング" loading="lazy">
-          <div class="msg-photo-overlay"></div>
+      <div class="currency-text-col">
+        <div class="currency-text-inner">
+          <span class="eyebrow reveal">Currency</span>
+          <h2 class="section-heading reveal d1">カニー券</h2>
+          <p class="reveal d2">
+            会場でのお買い物は独自通貨「カニー券」でお支払いをお願いいたします。模擬店での飲食やグッズ購入の際は、事前に本部テント内「KANI-BANK」にて日本円から両替をお願いいたします。
+          </p>
+          <span class="currency-rate reveal d2">100円 ＝ 100カニー</span>
+          <ul class="reveal d3">
+            <li>入場は無料ですが、飲食等にはカニー券が必要です。</li>
+            <li>会場内で現金は使えませんのでご注意ください。</li>
+            <li>払い戻しはいたしかねますので、あらかじめご了承ください。</li>
+          </ul>
         </div>
       </div>
 
-      <div class="msg-text-col">
-        <div class="msg-text-inner">
-          <span class="eyebrow reveal">Message</span>
-          <h2 class="section-heading reveal d1" style="margin-bottom:1.6rem">実行委員長より</h2>
-          <blockquote class="msg-poem reveal d2">
-            晩夏から<br>
-            初夏に季移れし<br>
-            祭りなれど<br>
-            想い変わらぬ<br>
-            熱き心魂
-          </blockquote>
-          <p class="msg-attr reveal d2">— 実行委員長 ニークラヤング</p>
-          <p class="msg-body reveal d3">
-            これまでは8月の真夏に開催されるのが恒例でしたが、近年の記録的な酷暑やゲリラ豪雨といった気候の変化に対応し、2026年から5月開催という大きな決断をしました。50周年に向けてカニ坂ロックフェスは新しい時代へと足を踏み出します。
-          </p>
+      <div class="currency-photo-col">
+        <div class="currency-photo-wrap">
+          <img src="images/kanny.jpg" alt="カニー券" loading="lazy">
         </div>
       </div>
 
