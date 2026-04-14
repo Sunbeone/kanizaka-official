@@ -677,6 +677,31 @@
     }
 
     /* ═══════════════════════════════════
+       TIMETABLE
+    ═══════════════════════════════════ */
+    .timetable {
+      background: var(--paper);
+      padding: 5rem 0 0;
+    }
+    .timetable .container {
+      max-width: 1280px;
+    }
+    .timetable-img-wrap {
+      margin-top: 2.5rem;
+      max-width: 1250px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .timetable-img-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    @media (max-width: 767px) {
+      .timetable { padding: 3.5rem 0 0; }
+    }
+
+    /* ═══════════════════════════════════
        EXTRA LIVE / 支援ライブ
     ═══════════════════════════════════ */
     .extra-live {
@@ -1135,6 +1160,64 @@
     .concept-card:hover .concept-card-rule { transform: scaleX(1); }
 
     /* ═══════════════════════════════════
+       GOODS BANNER
+    ═══════════════════════════════════ */
+    .goods-banner-section {
+      background: var(--paper2);
+      padding: 0;
+      border-top: 1px solid rgba(66,66,66,0.08);
+    }
+    .goods-banner-link {
+      display: block;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      transition: opacity 0.25s;
+    }
+    .goods-banner-link:hover { opacity: 0.88; }
+    .goods-banner-link img {
+      width: 100%;
+      height: auto;
+      display: block;
+      max-height: 340px;
+      object-fit: cover;
+      object-position: center;
+    }
+    .goods-banner-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(30,30,28,0.62) 0%, rgba(30,30,28,0.18) 60%, transparent 100%);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 2.5rem 3rem;
+    }
+    @media (max-width: 767px) {
+      .goods-banner-overlay { padding: 1.8rem 1.5rem; }
+      .goods-banner-link img { max-height: 220px; }
+    }
+    .goods-banner-eyebrow {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.26em;
+      text-transform: uppercase; color: var(--forest2); margin-bottom: 0.5rem;
+    }
+    .goods-banner-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.05rem, 2.5vw, 1.7rem);
+      font-weight: 700; color: rgba(255,255,255,0.92);
+      letter-spacing: 0.04em; line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+    .goods-banner-cta {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.65rem 1.5rem;
+      background: var(--forest);
+      color: #fff; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.14em; border-radius: 2px;
+      transition: background 0.2s, transform 0.2s;
+      width: fit-content;
+    }
+    .goods-banner-link:hover .goods-banner-cta {
+      background: var(--forest2); transform: translateX(3px);
+    }
+
+    /* ═══════════════════════════════════
        GALLERY
     ═══════════════════════════════════ */
     .gallery {
@@ -1590,22 +1673,24 @@
   <header class="hdr" id="hdr">
     <div class="hdr-inner">
       <nav class="hdr-nav">
-        <a href="about.html">About</a>
         <a href="#lineup">Lineup</a>
         <a href="#extra-live">Ex Live</a>
         <a href="#gallery">Gallery</a>
         <a href="#access">Access</a>
+        <a href="about.html">About</a>
+        <a href="goods.html">Goods</a>
       </nav>
       <button class="hdr-ham" id="hdrHam" aria-label="メニューを開く">
         <span></span><span></span><span></span>
       </button>
     </div>
     <nav class="hdr-mobile" id="hdrMobile">
-      <a href="about.html">About</a>
       <a href="#lineup">Lineup</a>
       <a href="#extra-live">Ex Live</a>
       <a href="#gallery">Gallery</a>
       <a href="#access">Access</a>
+      <a href="about.html">About</a>
+      <a href="goods.html">Goods</a>
     </nav>
   </header>
 
@@ -1793,6 +1878,17 @@
 
     </section><!-- /lineup -->
 
+    <!-- ═══ TIMETABLE ═══ -->
+    <section id="timetable" class="timetable">
+      <div class="container">
+        <span class="eyebrow reveal">Timetable</span>
+        <h2 class="section-heading reveal d1">タイムテーブル</h2>
+      </div>
+      <div class="timetable-img-wrap reveal d2">
+        <img src="images/timetable_ol.jpg" alt="カニ坂ロックフェスティバル2026 タイムテーブル" loading="lazy">
+      </div>
+    </section><!-- /timetable -->
+
     <!-- ═══ EXTRA LIVE / 支援ライブ ═══ -->
     <section id="extra-live" class="extra-live">
 
@@ -1875,6 +1971,18 @@
 
       </div><!-- /container -->
     </section><!-- /extra-live -->
+
+    <!-- ═══ GOODS BANNER ═══ -->
+    <section class="goods-banner-section">
+      <a href="goods.html" class="goods-banner-link" aria-label="カニ坂ロックフェスティバル2026 オフィシャルTシャツ先行予約はこちら">
+        <img src="images/official-t.jpg" alt="カニ坂ロックフェスティバル2026 オフィシャルTシャツ" loading="lazy">
+        <div class="goods-banner-overlay">
+          <span class="goods-banner-eyebrow">Goods</span>
+          <p class="goods-banner-title">カニ坂ロックフェスティバル2026<br>Official Tシャツ先行予約はこちら</p>
+          <span class="goods-banner-cta">予約フォームへ →</span>
+        </div>
+      </a>
+    </section><!-- /goods-banner -->
 
     <!-- ═══ GALLERY LIGHTBOX ═══ -->
     <div class="glb-overlay" id="glbOverlay" role="dialog" aria-modal="true" aria-label="ギャラリー拡大表示">

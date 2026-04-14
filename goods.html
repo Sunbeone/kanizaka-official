@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="福生カニ坂ロックフェスティバル2026 オフィシャルTシャツ先行予約フォーム。">
+  <meta property="og:title"       content="Goods — 福生カニ坂ロックフェスティバル 2026">
+  <meta property="og:description" content="オフィシャルTシャツ先行予約受付中">
+  <meta property="og:image"       content="images/official-t.jpg">
+  <title>Goods — 福生カニ坂ロックフェスティバル</title>
+
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="images/logo.png" type="image/png">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F64PRL9LPF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F64PRL9LPF');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══ TOKENS ═══ */
+    :root {
+      --paper:   #F5F5F0;
+      --paper2:  #EEEEE9;
+      --ink:     #424242;
+      --charcoal:#333333;
+      --forest:  #2E7D32;
+      --forest2: #388E3C;
+      --ease-expo: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ═══ RESET / BASE ═══ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans',
+                   -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    :lang(ja) { font-feature-settings: 'palt' 1; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--paper); }
+    ::-webkit-scrollbar-thumb { background: var(--forest); }
+
+    /* ═══ GRAIN ═══ */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity: 0.4;
+    }
+
+    /* ═══ HEADER ═══ */
+    .hdr {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      transition: background 0.35s, box-shadow 0.35s, transform 0.35s var(--ease-expo);
+    }
+    .hdr-inner {
+      display: flex; align-items: center; justify-content: flex-end;
+      padding: 0 1.5rem; height: 60px;
+    }
+    .hdr.scrolled {
+      background: rgba(245,245,240,0.94);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(66,66,66,0.08);
+    }
+    .hdr.hidden { transform: translateY(-100%); }
+    .hdr-logo {
+      margin-right: auto; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+    }
+    .hdr.scrolled .hdr-logo { color: var(--charcoal); }
+    .hdr-nav { display: none; gap: 2.2rem; }
+    .hdr-nav a {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: rgba(255,255,255,0.82);
+      position: relative; padding-bottom: 2px;
+    }
+    .hdr-nav a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px; background: var(--forest);
+      transition: width 0.3s var(--ease-expo);
+    }
+    .hdr-nav a:hover { color: var(--forest); }
+    .hdr-nav a:hover::after { width: 100%; }
+    .hdr.scrolled .hdr-nav a { color: rgba(66,66,66,0.65); text-shadow: none; }
+    .hdr.scrolled .hdr-nav a:hover { color: var(--forest); }
+
+    /* hamburger */
+    .hdr-ham {
+      display: flex; flex-direction: column; justify-content: center;
+      gap: 5px; width: 28px; height: 28px;
+      background: none; border: none; cursor: pointer; padding: 2px;
+    }
+    .hdr-ham span {
+      display: block; height: 1.5px; background: rgba(255,255,255,0.85);
+      transition: transform 0.3s var(--ease-expo), opacity 0.3s;
+    }
+    .hdr.scrolled .hdr-ham span { background: var(--charcoal); }
+    .hdr-ham.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hdr-ham.open span:nth-child(2) { opacity: 0; }
+    .hdr-ham.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* mobile nav */
+    .hdr-mobile {
+      display: flex; flex-direction: column;
+      background: rgba(245,245,240,0.97);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s var(--ease-expo), padding 0.4s;
+      border-top: 1px solid transparent;
+    }
+    .hdr-mobile.open {
+      max-height: 400px; padding: 0.5rem 0 1rem;
+      border-top-color: rgba(66,66,66,0.08);
+    }
+    .hdr-mobile a {
+      padding: 0.7rem 1.5rem; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--charcoal);
+    }
+    .hdr-mobile a:hover { color: var(--forest); }
+
+    @media (min-width: 768px) {
+      .hdr-nav  { display: flex; }
+      .hdr-ham  { display: none; }
+    }
+
+    /* ═══ PAGE HERO ═══ */
+    .page-hero {
+      position: relative;
+      background: var(--charcoal);
+      padding: 9rem 1.5rem 4rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url('images/official-t.jpg');
+      background-position: center center;
+      background-size: cover;
+      opacity: 0.22;
+      z-index: 0;
+    }
+    .page-hero > *:not(.page-hero-bg) { position: relative; z-index: 1; }
+    .eyebrow {
+      display: block; font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.26em; text-transform: uppercase;
+      color: var(--forest2); margin-bottom: 0.8rem;
+    }
+    .page-hero h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.4rem, 4vw, 2.6rem);
+      font-weight: 700; color: rgba(255,255,255,0.9);
+      letter-spacing: 0.04em; line-height: 1.4;
+    }
+    .page-hero .hero-sub {
+      margin-top: 0.9rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.52);
+      letter-spacing: 0.08em;
+    }
+
+    /* ═══ GOODS SECTION ═══ */
+    .goods-section {
+      background: var(--paper);
+      padding: 4rem 1.5rem 3rem;
+    }
+    .goods-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .goods-intro {
+      font-size: 0.9rem;
+      line-height: 2.0;
+      color: rgba(66,66,66,0.7);
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+    .goods-t-image {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      border-radius: 6px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+    }
+    .deadline-notice {
+      display: flex; align-items: center; gap: 1rem;
+      background: #fff8e1;
+      border-left: 4px solid #f59e0b;
+      border-radius: 4px;
+      padding: 0.9rem 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .deadline-label {
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: #b45309; white-space: nowrap;
+    }
+    .deadline-date {
+      font-size: 0.92rem; font-weight: 700;
+      color: #92400e; letter-spacing: 0.04em;
+    }
+
+    .form-wrap {
+      width: 100%;
+      overflow: hidden;
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+    .form-wrap iframe {
+      display: block;
+      width: 100%;
+      border: none;
+    }
+
+    /* ═══ SNS BAR ═══ */
+    .sns-bar {
+      background: var(--paper2);
+      border-top: 1px solid rgba(66,66,66,0.08);
+      padding: 2.5rem 1.5rem;
+      display: flex; flex-direction: column; align-items: center; gap: 1.2rem;
+    }
+    .sns-bar-label {
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(66,66,66,0.38);
+    }
+    .sns-links {
+      display: flex; gap: 2rem;
+    }
+    .sns-link {
+      display: flex; flex-direction: column; align-items: center; gap: 0.35rem;
+      color: rgba(66,66,66,0.6);
+      transition: color 0.2s;
+    }
+    .sns-link:hover { color: var(--forest); }
+    .sns-link svg {
+      width: 20px; height: 20px;
+      fill: none; stroke: currentColor; stroke-width: 1.5;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .sns-link span {
+      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+
+    /* ═══ FOOTER ═══ */
+    .site-footer {
+      background: var(--charcoal); color: rgba(255,255,255,0.35);
+      text-align: center; padding: 2rem 1.5rem;
+      font-size: 0.7rem; letter-spacing: 0.12em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="hdr" id="hdr">
+    <div class="hdr-inner">
+      <nav class="hdr-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="goods.html" style="color:var(--forest2)">Goods</a>
+      </nav>
+      <button class="hdr-ham" id="hdrHam" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="hdr-mobile" id="hdrMobile">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="goods.html">Goods</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ═══ PAGE HERO ═══ -->
+    <div class="page-hero">
+      <div class="page-hero-bg"></div>
+      <span class="eyebrow">Goods</span>
+      <h1>オフィシャルTシャツ</h1>
+      <p class="hero-sub">先行予約受付中</p>
+    </div>
+
+    <!-- ═══ GOODS SECTION ═══ -->
+    <section class="goods-section">
+      <div class="goods-inner">
+
+        <p class="goods-intro">
+          カニ坂ロックフェスティバル2026 オフィシャルTシャツの先行予約を受け付けております。<br>
+          下記フォームよりお申し込みください。
+        </p>
+
+        <div class="deadline-notice">
+          <span class="deadline-label">受付期限</span>
+          <span class="deadline-date">2026年4月30日（木）まで</span>
+        </div>
+
+        <div class="form-wrap" id="formWrap">
+          <iframe
+            id="googleForm"
+            src="https://docs.google.com/forms/d/e/1FAIpQLScZt5NHu93ZjtuigtsfktRigUn80TZK8MQf_WNhJO3plxzRkw/viewform?embedded=true"
+            width="640"
+            height="5320"
+            frameborder="0"
+            marginheight="0"
+            marginwidth="0">読み込んでいます…</iframe>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SNS BAR -->
+  <div class="sns-bar">
+    <p class="sns-bar-label">Follow Us</p>
+    <div class="sns-links">
+      <a href="https://www.facebook.com/KanizakaRockFestival" target="_blank" rel="noopener noreferrer" class="sns-link" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        <span>Facebook</span>
+      </a>
+      <a href="https://www.instagram.com/fussakanizaka/" target="_blank" rel="noopener noreferrer" class="sns-link" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" style="fill:var(--charcoal)"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="var(--charcoal)" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Instagram</span>
+      </a>
+      <a href="https://www.threads.com/@fussakanizaka" target="_blank" rel="noopener noreferrer" class="sns-link" aria-label="Threads">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.5 12.068c0-3.516.85-6.371 2.495-8.424C5.845 1.34 8.6.16 12.18.136h.014c2.733.02 5.036.738 6.845 2.135 1.712 1.32 2.89 3.188 3.503 5.552l-2.184.533c-.469-1.865-1.377-3.355-2.701-4.428-1.368-1.106-3.17-1.67-5.465-1.685-2.803.019-5.027.924-6.613 2.69C4.035 6.69 3.17 9.123 3.17 12.068c0 2.948.865 5.38 2.412 7.14 1.587 1.766 3.81 2.671 6.613 2.69 2.52.016 4.363-.669 5.474-2.037.992-1.22 1.538-3.064 1.538-5.261v-.33h-6.997v-2.02h9.23v2.02c0 2.866-.738 5.24-2.137 6.869C17.82 23.1 15.408 24 12.186 24Zm3.677-12.74c-.208-2.198-1.703-3.508-4.02-3.5-1.34.004-2.451.46-3.21 1.319-.758.857-1.13 2.084-1.104 3.645.026 1.553.432 2.768 1.208 3.611.758.823 1.866 1.241 3.293 1.241.027 0 .054 0 .08-.001 1.424-.018 2.487-.418 3.162-1.188.604-.69.943-1.69 1.008-2.974h-4.553v-2.032h5.136v-.121Z"/></svg>
+        <span>Threads</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <p class="footer-copy">© 2026 福生カニ坂ロックフェスティバル</p>
+  </footer>
+
+  <script>
+  (function () {
+    'use strict';
+    var rafPending = false;
+
+    /* ── SMART HEADER ── */
+    var hdr        = document.getElementById('hdr');
+    var lastScrollY = 0;
+    var hdrVisible  = true;
+
+    function updateHeader() {
+      var y = window.scrollY;
+      if (y > 60 && !hdr.classList.contains('scrolled')) hdr.classList.add('scrolled');
+      if (y <= 60 && hdr.classList.contains('scrolled'))  hdr.classList.remove('scrolled');
+      if (y > lastScrollY + 6 && hdrVisible && y > 120) {
+        hdr.classList.add('hidden'); hdrVisible = false;
+      } else if (y < lastScrollY - 6 && !hdrVisible) {
+        hdr.classList.remove('hidden'); hdrVisible = true;
+      }
+      lastScrollY = y;
+    }
+
+    /* ── HAMBURGER ── */
+    var ham    = document.getElementById('hdrHam');
+    var mobile = document.getElementById('hdrMobile');
+    ham.addEventListener('click', function () {
+      var open = mobile.classList.toggle('open');
+      ham.classList.toggle('open', open);
+      ham.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    });
+    mobile.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        mobile.classList.remove('open');
+        ham.classList.remove('open');
+      });
+    });
+
+    window.addEventListener('scroll', function () {
+      if (!rafPending) {
+        rafPending = true;
+        requestAnimationFrame(function () {
+          updateHeader();
+          rafPending = false;
+        });
+      }
+    }, { passive: true });
+
+    updateHeader();
+
+    /* ── iframe レスポンシブ＆高さ自動調整 ── */
+    var iframe   = document.getElementById('googleForm');
+    var formWrap = document.getElementById('formWrap');
+    var ORIG_W   = 640;
+    var ORIG_H   = 5320;
+
+    function setHeight(h) {
+      if (!h || h < 200) return;
+      ORIG_H = h;
+      iframe.setAttribute('height', h);
+      applyScale();
+    }
+
+    /* ① postMessage — あらゆるフォーマットに対応 */
+    window.addEventListener('message', function (e) {
+      var raw = e.data;
+      if (!raw) return;
+      var h = 0;
+      if (typeof raw === 'string') {
+        var m = raw.match(/(?:setHeight|height)[^\d]*(\d+)/i);
+        if (m) { h = parseInt(m[1], 10); }
+        if (!h) {
+          try {
+            var obj = JSON.parse(raw);
+            var val = obj && (obj.height || obj.value || obj.h || obj.size);
+            if (val) h = parseInt(String(val).replace(/\D/g, ''), 10);
+          } catch (err) {}
+        }
+      } else if (raw && typeof raw === 'object') {
+        var val2 = raw.height || raw.value || raw.h;
+        if (val2) h = parseInt(String(val2).replace(/\D/g, ''), 10);
+      }
+      if (h > 200) setHeight(h);
+    });
+
+    /* ② MutationObserver — Google が height 属性を書き換えた場合に検知 */
+    if (window.MutationObserver && iframe) {
+      new MutationObserver(function (mutations) {
+        mutations.forEach(function (mu) {
+          if (mu.attributeName === 'height') {
+            var h = parseInt(iframe.getAttribute('height'), 10);
+            if (h > 200 && h !== ORIG_H) setHeight(h);
+          }
+        });
+      }).observe(iframe, { attributes: true, attributeFilter: ['height'] });
+    }
+
+    /* ③ load イベント検知
+     *  - 1回目：フォーム初期表示
+     *  - 2回目以降：送信後の確認ページ（はるかに短い）
+     */
+    var loadCount = 0;
+    iframe.addEventListener('load', function () {
+      loadCount++;
+
+      if (loadCount === 1) {
+        /* 初回ロード：同一オリジンなら scrollHeight 取得を試みる（Google では失敗、無視） */
+        [300, 1000, 2500].forEach(function (delay) {
+          setTimeout(function () {
+            try {
+              var doc = iframe.contentDocument || iframe.contentWindow.document;
+              var h = doc.documentElement.scrollHeight || doc.body.scrollHeight;
+              if (h > 200) setHeight(h + 40);
+            } catch (e) { /* クロスオリジン — 無視 */ }
+          }, delay);
+        });
+      } else {
+        /* 送信後の確認ページ：Google Forms の確認画面は約 600px */
+        setTimeout(function () {
+          /* postMessage で正確な高さが来ていなければ 650px にセット */
+          setHeight(300);
+          /* スムーズに縮む見た目にする */
+          iframe.style.transition = 'height 0.5s ease';
+          setTimeout(function () { iframe.style.transition = ''; }, 600);
+        }, 400);
+      }
+    });
+
+    function applyScale() {
+      if (!iframe || !formWrap) return;
+      var wrapW = formWrap.offsetWidth;
+      if (wrapW < ORIG_W) {
+        var scale = wrapW / ORIG_W;
+        iframe.style.transform       = 'scale(' + scale + ')';
+        iframe.style.transformOrigin = 'top left';
+        iframe.style.width           = ORIG_W + 'px';
+        iframe.style.height          = ORIG_H + 'px';
+        formWrap.style.height        = Math.ceil(ORIG_H * scale) + 'px';
+        formWrap.style.overflow      = 'hidden';
+      } else {
+        iframe.style.transform  = '';
+        iframe.style.width      = '100%';
+        iframe.style.height     = ORIG_H + 'px';
+        formWrap.style.height   = '';
+        formWrap.style.overflow = 'visible';
+      }
+    }
+    applyScale();
+    window.addEventListener('resize', applyScale);
+
+  }());
+  </script>
+
+</body>
+</html>
