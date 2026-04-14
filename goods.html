@@ -482,11 +482,16 @@
     function applyScale() {
       if (!iframe || !formWrap) return;
       var wrapW = formWrap.offsetWidth;
-      if (wrapW < ORIG_W) {
-        var scale = wrapW / ORIG_W;
+      /*
+       * モバイルでは基準幅を 480px に下げてスケールを緩やかにする。
+       * 例）375px 幅の場合: 480 基準 → scale 0.78（640 基準だと 0.59）
+       */
+      var refW = wrapW < 768 ? 480 : ORIG_W;
+      if (wrapW < refW) {
+        var scale = wrapW / refW;
         iframe.style.transform       = 'scale(' + scale + ')';
         iframe.style.transformOrigin = 'top left';
-        iframe.style.width           = ORIG_W + 'px';
+        iframe.style.width           = refW + 'px';
         iframe.style.height          = ORIG_H + 'px';
         formWrap.style.height        = Math.ceil(ORIG_H * scale) + 'px';
         formWrap.style.overflow      = 'hidden';
