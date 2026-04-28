@@ -198,6 +198,52 @@
       border-radius: 6px;
       box-shadow: 0 8px 40px rgba(0,0,0,0.1);
     }
+    .price-table {
+      display: flex; flex-direction: column; gap: 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+    .price-row {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 0.85rem 1.2rem;
+      border-radius: 4px;
+    }
+    .price-preorder {
+      background: #f0fdf4;
+      border: 1.5px solid var(--forest);
+    }
+    .price-door {
+      background: var(--paper2);
+      border: 1.5px solid rgba(66,66,66,0.15);
+    }
+    .price-badge {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+      color: rgba(66,66,66,0.6);
+    }
+    .price-preorder .price-badge { color: var(--forest); }
+    .price-amount {
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--charcoal); letter-spacing: 0.02em;
+    }
+    .price-off {
+      font-size: 0.78rem; font-weight: 700;
+      color: var(--forest); margin-left: 0.3rem;
+    }
+    .price-note {
+      font-size: 0.75rem; font-weight: 400;
+      color: rgba(66,66,66,0.5); margin-left: 0.3rem;
+    }
+    .stock-notice {
+      font-size: 0.83rem;
+      line-height: 1.7;
+      color: rgba(66,66,66,0.65);
+      background: var(--paper2);
+      border-radius: 4px;
+      padding: 0.75rem 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
     .deadline-notice {
       display: flex; align-items: center; gap: 1rem;
       background: #fff8e1;
@@ -295,7 +341,7 @@
       <div class="page-hero-bg"></div>
       <span class="eyebrow">Goods</span>
       <h1>オフィシャルTシャツ</h1>
-      <p class="hero-sub">先行予約受付中</p>
+      <p class="hero-sub">先行予約受付中 ── 5月6日（水）まで</p>
     </div>
 
     <!-- ═══ GOODS SECTION ═══ -->
@@ -307,9 +353,24 @@
           下記フォームよりお申し込みください。
         </p>
 
+        <div class="price-table">
+          <div class="price-row price-preorder">
+            <div class="price-badge">先行予約</div>
+            <div class="price-amount">¥2,500<span class="price-off"> （500円OFF）</span></div>
+          </div>
+          <div class="price-row price-door">
+            <div class="price-badge">当日販売</div>
+            <div class="price-amount">¥3,000<span class="price-note"> ※数量限定</span></div>
+          </div>
+        </div>
+
+        <div class="stock-notice">
+          当日販売は数に限りがあります。確実にお求めの方はぜひ先行予約をご利用ください。
+        </div>
+
         <div class="deadline-notice">
-          <span class="deadline-label">受付期限</span>
-          <span class="deadline-date">2026年4月30日（木）まで</span>
+          <span class="deadline-label">予約受付期限</span>
+          <span class="deadline-date">2026年5月6日（水）まで</span>
         </div>
 
         <div class="form-wrap" id="formWrap">
